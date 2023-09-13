@@ -18,14 +18,6 @@
   font-family: var(--font-mono);
 }
 
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 1rem;
-}
-
 .description a {
   display: flex;
   justify-content: center;
@@ -112,9 +104,6 @@
   transform: translateZ(0);
 }
 
-.logo {
-  position: relative;
-}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
@@ -161,11 +150,6 @@
   .center::before {
     transform: none;
     height: 300px;
-  }
-
-  .header {
-    font-size: 0.9rem;
-    
   }
 
   .description {
@@ -219,12 +203,6 @@
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
     grid-template-columns: repeat(2, 50%);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert(1);
   }
 }
 

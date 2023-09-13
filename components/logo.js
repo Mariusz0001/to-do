@@ -1,9 +1,9 @@
 import Image from "next/image";
-import styles from "../app/styles/page.module.css";
+import styles from "../app/styles/logo.module.css";
 
 export default function Logo() {
   return (
-    <>
+    <header>
       <div className={styles.header}>
         <Image
           className={styles.logo}
@@ -23,6 +23,6 @@ export default function Logo() {
           personal and professional life.
         </p>
       </div>
-    </>
+    </header>
   );
 }
