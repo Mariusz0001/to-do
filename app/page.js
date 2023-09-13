@@ -1,10 +1,9 @@
 import Image from 'next/image'
-import styles from './page.module.css'
+import styles from './styles/page.module.css'
 
 export default function Home() {
   return (
     <>
-    <header>
         <div className={styles.header}>
         <Image
           className={styles.logo}
@@ -13,15 +12,13 @@ export default function Home() {
           width={400}
           height={300}
           priority
-        />
-        
+        />          
       </div>
-      <div className={styles.header}>
+      <di className={styles.header}v>
       <p>
         A ToDo application is a digital tool designed to help users organize and manage tasks and activities. It typically allows users to create, prioritize, and track their to-do lists, set deadlines, and receive reminders, making it easier to stay productive and organized in both personal and professional life.
-      </p>      
-      </div>
-      </header>
+      </p>   
+      </di> 
     <main className={styles.main}>      
       <div className={styles.grid}>
         <a

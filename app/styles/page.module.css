@@ -163,6 +163,11 @@
     height: 300px;
   }
 
+  .header {
+    font-size: 0.9rem;
+    
+  }
+
   .description {
     font-size: 0.8rem;
   }
