@@ -3,42 +3,26 @@ import styles from './page.module.css'
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
+    <>
+    <header>
+        <div className={styles.header}>
         <Image
           className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
+          src="/logo.svg"
+          alt="ToDo app Logo"
+          width={400}
+          height={300}
           priority
         />
+        
       </div>
-
+      <div className={styles.header}>
+      <p>
+        A ToDo application is a digital tool designed to help users organize and manage tasks and activities. It typically allows users to create, prioritize, and track their to-do lists, set deadlines, and receive reminders, making it easier to stay productive and organized in both personal and professional life.
+      </p>      
+      </div>
+      </header>
+    <main className={styles.main}>      
       <div className={styles.grid}>
         <a
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -91,5 +75,6 @@ export default function Home() {
         </a>
       </div>
     </main>
+    </>
   )
 }

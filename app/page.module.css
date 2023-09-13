@@ -18,6 +18,14 @@
   font-family: var(--font-mono);
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 1rem;
+}
+
 .description a {
   display: flex;
   justify-content: center;
@@ -210,12 +218,8 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .vercelLogo {
-    filter: invert(1);
-  }
-
   .logo {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
+    filter: invert(1);
   }
 }
 
