@@ -1,10 +1,11 @@
 
 import Logo from "@/components/logo";
 import styles from "./styles/page.module.css";
+import Layout from "@/components/layout";
 
 export default function Home() {
   return (
-    <>
+    <Layout>
        <Logo></Logo>
       <main className={styles.main}>
         <div className={styles.grid}>
@@ -61,6 +62,6 @@ export default function Home() {
           </a>
         </div>
       </main>
-    </>
+    </Layout>
   );
 }
