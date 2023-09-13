@@ -1,4 +1,4 @@
-import styles from "../app/styles/tasks_list.module.css";
+import styles from "../styles/tasks_list.module.css";
 
 export default function TasksList(children){
     return <>

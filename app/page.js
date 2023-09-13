@@ -1,8 +1,8 @@
 
-import Logo from "@/components/logo";
+import Logo from "@/app/components/logo";
 import styles from "./styles/page.module.css";
-import Layout from "@/components/layout";
-import TasksList from "@/components/tasks-list";
+import Layout from "@/app/components/layout";
+import TasksList from "@/app/components/tasks-list";
 
 export default function Home() {
   return (
