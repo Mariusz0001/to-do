@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
+import {Checkbox} from "@/app/components/ui/checkbox";
 
 export default function TasksList(children) {
   return (
