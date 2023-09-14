@@ -1,5 +1,6 @@
 import styles from "../styles/tasks_list.module.css";
 import { Button } from "@/app/components/ui/button";
+import { Task } from "@/app/components/ui/task";
 import {
   Card,
   CardContent,
@@ -17,7 +18,8 @@ export default function TasksList(children) {
           <CardTitle>Todo</CardTitle>
         </CardHeader>
         <CardContent>
-          <p>Card Content</p>
+          <Task>Develop a card view</Task>
+          <Task>Develop a card view</Task>
         </CardContent>
         <CardFooter>
           <Button className="w-full">
