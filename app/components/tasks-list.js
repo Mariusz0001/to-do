@@ -9,14 +9,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
-import {Checkbox} from "@/app/components/ui/checkbox";
+import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 
-export default function TasksList(children) {
+export default function TasksList({ ...props }) {
   return (
     <>
       <Card className="w-[350px]">
         <CardHeader>
-          <CardTitle>Todo</CardTitle>
+          <CardTitle>{props.boardType}</CardTitle>
         </CardHeader>
         <CardContent>
           <Task>Develop a card view</Task>
