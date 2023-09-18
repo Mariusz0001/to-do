@@ -1,5 +1,4 @@
 import styles from "../styles/tasks_list.module.css";
-import { Button } from "@/app/components/ui/button";
 import { Task } from "@/app/components/ui/task";
 import {
   Card,
@@ -10,6 +9,7 @@ import {
   CardTitle,
 } from "@/app/components/ui/card";
 import { BOARD_TYPE } from "@/app/lib/enums/boardType";
+import { Input } from "@/app/components/ui/input";
 
 export default function TasksList({ ...props }) {
   return (
@@ -23,9 +23,10 @@ export default function TasksList({ ...props }) {
           <Task>Develop a card view</Task>
         </CardContent>
         <CardFooter>
-          <Button className="w-full">
-            +Add task
-          </Button>
+          <Input
+            className="w-full"
+            placeholder="Start typing to add new task..."
+          ></Input>
         </CardFooter>
       </Card>
       <div className={styles.card}></div>
