@@ -7,16 +7,14 @@ const AddNewTask = React.forwardRef(({ className, ...props }, ref) => {
   const addTaskRef = useRef(null);
 
   const handleLostFocus = () => {
-    debugger;
-    console.log("handleKeyDown");
-    console.log(addTaskRef.current.value);
+    props.handleAddTask(addTaskRef.current.value);
+    addTaskRef.current.value = null;
   };
 
   return (
     <Input
       className="w-full"
       ref={addTaskRef}
-      name="taskname"
       placeholder="Start typing to add new task..."
       onBlur={handleLostFocus}
     ></Input>
