@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { cn } from "@/app/lib/utils";
-import { Checkbox } from "./checkbox";
+import { Checkbox } from "../checkbox";
 
 const Task = React.forwardRef(({ className, ...props }, ref) => {
   useEffect(() => {
