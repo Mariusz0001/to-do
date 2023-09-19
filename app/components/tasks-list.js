@@ -1,3 +1,6 @@
+"use client";//todo change on ssr when DB will be ready
+
+import { useState } from "react";
 import styles from "../styles/tasks_list.module.css";
 import { Task } from "@/app/components/ui/todoapp/task";
 import { AddNewTask } from "@/app/components/ui/todoapp/addNewTask";
@@ -11,6 +14,27 @@ import {
 import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 
 export default function TasksList({ ...props }) {
+  var tempTasks = [ //todo delete this
+    {
+      name: "Possibility to accomplish the task",
+      id: 0,
+    }
+  ];
+
+  const [tasks, setTasks] = useState(tempTasks);
+
+  const handleAddTask = (taskName) => {
+    if (!!taskName) {
+      setTasks((prevTasks) => [
+        ...prevTasks,
+        {
+          name: taskName,
+          id: Date.now(),
+        },
+      ]);
+    }
+  };
+
   return (
     <>
       <Card className="w-[350px]">
@@ -18,11 +42,12 @@ export default function TasksList({ ...props }) {
           <CardTitle>{props.boardType}</CardTitle>
         </CardHeader>
         <CardContent>
-          <Task>Develop a card view</Task>
-          <Task>Develop a card view</Task>
+          {tasks.map((task, index) => (
+            <Task key={index}>{task.name}</Task>
+          ))}
         </CardContent>
         <CardFooter>
-          <AddNewTask/>
+          <AddNewTask handleAddTask={handleAddTask} />
         </CardFooter>
       </Card>
       <div className={styles.card}></div>
