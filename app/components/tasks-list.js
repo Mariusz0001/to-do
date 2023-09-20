@@ -1,4 +1,4 @@
-"use client";//todo change on ssr when DB will be ready
+"use client"; //todo change on ssr when DB will be ready
 
 import { useState } from "react";
 import styles from "../styles/tasks_list.module.css";
@@ -14,11 +14,12 @@ import {
 import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 
 export default function TasksList({ ...props }) {
-  var tempTasks = [ //todo delete this
+  var tempTasks = [
+    //todo delete this
     {
       name: "Possibility to accomplish the task",
       id: 0,
-    }
+    },
   ];
 
   const [tasks, setTasks] = useState(tempTasks);
@@ -35,6 +36,13 @@ export default function TasksList({ ...props }) {
     }
   };
 
+  const handleAccomplishTask = (id) => {
+    if(id !== null) { 
+      setTasks((prevTasks) => 
+        prevTasks.filter(task => task.id !== id));
+    }
+  }
+
   return (
     <>
       <Card className="w-[350px]">
@@ -43,7 +51,7 @@ export default function TasksList({ ...props }) {
         </CardHeader>
         <CardContent>
           {tasks.map((task, index) => (
-            <Task key={index}>{task.name}</Task>
+            <Task key={index} id={task.id} handleAccomplishTask={handleAccomplishTask}>{task.name}</Task>
           ))}
         </CardContent>
         <CardFooter>

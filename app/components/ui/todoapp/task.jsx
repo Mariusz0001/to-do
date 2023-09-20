@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useRef } from "react";
 import { cn } from "@/app/lib/utils";
 import { Checkbox } from "../checkbox";
 
 const Task = React.forwardRef(({ className, ...props }, ref) => {
-  useEffect(() => {
-    // Your useEffect logic here
-  }, []);
+  const checkboxRef = useRef(null);
+
+  const handleClickCheckbox = () => props.handleAccomplishTask(props.id);
 
   return (
     <div className="p-1">
@@ -19,7 +19,12 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
         {...props}
         ref={ref}
       >
-        <Checkbox id="taskCheckbox" className="p-2"></Checkbox>
+        <Checkbox
+          id="taskCheckbox"
+          className="p-2"
+          ref={checkboxRef}
+          onClick={handleClickCheckbox}
+        ></Checkbox>
         <label
           htmlFor="taskCheckbox"
           className="font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
