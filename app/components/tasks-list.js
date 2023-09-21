@@ -45,11 +45,14 @@ export default function TasksList({ ...props }) {
           <CardTitle>{props.boardType}</CardTitle>
         </CardHeader>
         <CardContent>
-          {data.map((task, index) => (
+          {data
+          .sort((a,b) => a.creationdate - b.creationdate)
+          .map((task, index) => (
             <Task
               key={index}
               id={task.id}
               handleAccomplishTask={handleAccomplishTask}
+              status={task.status}
             >
               {task.name}
             </Task>
