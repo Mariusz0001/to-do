@@ -1,9 +1,10 @@
 const ADD_URL = "/add/";
 
-const addTask = async (taskName) =>
+const addTask = async (taskName, type) =>
 {
     const newTask = {
         name: taskName,
+        type: type
       };
 
     const params = {

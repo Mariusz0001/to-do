@@ -25,7 +25,7 @@ export default function TasksList({ ...props }) {
 
   const handleAddTask = async (taskName) => {
     if (!!taskName) {
-      await addTask(taskName);
+      await addTask(taskName, props.type.value);
       mutate();
     }
   };
