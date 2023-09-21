@@ -1,6 +1,5 @@
-"use client"; //todo change on ssr when DB will be ready
+"use client";
 
-import { useState } from "react";
 import styles from "../styles/tasks_list.module.css";
 import { Task } from "@/app/components/ui/todoapp/task";
 import { AddNewTask } from "@/app/components/ui/todoapp/addNewTask";
@@ -12,17 +11,17 @@ import {
   CardTitle,
 } from "@/app/components/ui/card";
 import { BOARD_TYPE } from "@/app/lib/enums/boardType";
+import useSWR from "swr";
 
 export default function TasksList({ ...props }) {
-  var tempTasks = [
-    //todo delete this
-    {
-      name: "Possibility to accomplish the task",
-      id: 0,
-    },
-  ];
+  const fetcher = (url) => fetch(url).then((res) => res.json());
+  const { data, error, isLoading } = useSWR(
+    process.env.NEXT_PUBLIC_BACKEND_URL,
+    fetcher
+  );
 
-  const [tasks, setTasks] = useState(tempTasks);
+  if (error) return <p>Failed to load data</p>;
+  if (isLoading) return <p>Loading... ⏳</p>;
 
   const handleAddTask = (taskName) => {
     if (!!taskName) {
@@ -37,11 +36,10 @@ export default function TasksList({ ...props }) {
   };
 
   const handleAccomplishTask = (id) => {
-    if(id !== null) { 
-      setTasks((prevTasks) => 
-        prevTasks.filter(task => task.id !== id));
+    if (id !== null) {
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
     }
-  }
+  };
 
   return (
     <>
@@ -50,8 +48,14 @@ export default function TasksList({ ...props }) {
           <CardTitle>{props.boardType}</CardTitle>
         </CardHeader>
         <CardContent>
-          {tasks.map((task, index) => (
-            <Task key={index} id={task.id} handleAccomplishTask={handleAccomplishTask}>{task.name}</Task>
+          {data.map((task, index) => (
+            <Task
+              key={index}
+              id={task.id}
+              handleAccomplishTask={handleAccomplishTask}
+            >
+              {task.name}
+            </Task>
           ))}
         </CardContent>
         <CardFooter>
