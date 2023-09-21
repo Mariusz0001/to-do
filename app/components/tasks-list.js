@@ -12,6 +12,7 @@ import {
 } from "@/app/components/ui/card";
 import useSWR from "swr";
 import { addTask } from "@/app/lib/commands/addTask";
+import { moveTask } from "@/app/lib/commands/moveTask";
 
 export default function TasksList({ ...props }) {
   const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -30,9 +31,10 @@ export default function TasksList({ ...props }) {
     }
   };
 
-  const handleAccomplishTask = (id) => {
+  const handleAccomplishTask = async (id) => {
     if (id !== null) {
-      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+      await moveTask(id);
+      mutate();
     }
   };
 
