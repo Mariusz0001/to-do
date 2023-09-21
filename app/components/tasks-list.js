@@ -12,12 +12,11 @@ import {
 } from "@/app/components/ui/card";
 import useSWR from "swr";
 import { addTask } from "@/app/lib/commands/addTask";
-import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 
 export default function TasksList({ ...props }) {
   const fetcher = (url) => fetch(url).then((res) => res.json());
   const { data, error, isLoading, mutate } = useSWR(
-    process.env.NEXT_PUBLIC_BACKEND_URL,
+    [process.env.NEXT_PUBLIC_BACKEND_URL + '/' + props.type.value],
     fetcher
   );
 
@@ -25,7 +24,6 @@ export default function TasksList({ ...props }) {
   if (isLoading) return <p>Loading... ⏳</p>;
 
   const handleAddTask = async (taskName) => {
-    debugger;
     if (!!taskName) {
       await addTask(taskName);
       mutate();
@@ -40,7 +38,7 @@ export default function TasksList({ ...props }) {
 
   return (
     <>
-      <Card className="w-[350px]">
+      <Card className="w-[25rem] pr-2">
         <CardHeader>
           <CardTitle>{props.type.text}</CardTitle>
         </CardHeader>
