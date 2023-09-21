@@ -10,8 +10,9 @@ export default function Home() {
     <Layout>
        <Logo></Logo>
       <main className={styles.main}>
-        <TasksList boardType={BOARD_TYPE.TO_DO}/>
-        <TasksList boardType={BOARD_TYPE.IN_PROGRESS}/>
+        <TasksList type={BOARD_TYPE.TO_DO}/>
+        <TasksList type={BOARD_TYPE.IN_PROGRESS}/>
+        <TasksList type={BOARD_TYPE.COMPLETE}/>
       </main>
     </Layout>
   );

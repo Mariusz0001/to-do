@@ -10,9 +10,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
-import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 import useSWR from "swr";
 import { addTask } from "@/app/lib/commands/addTask";
+import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 
 export default function TasksList({ ...props }) {
   const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -42,11 +42,10 @@ export default function TasksList({ ...props }) {
     <>
       <Card className="w-[350px]">
         <CardHeader>
-          <CardTitle>{props.boardType}</CardTitle>
+          <CardTitle>{props.type.text}</CardTitle>
         </CardHeader>
         <CardContent>
           {data
-          .sort((a,b) => a.creationdate - b.creationdate)
           .map((task, index) => (
             <Task
               key={index}
