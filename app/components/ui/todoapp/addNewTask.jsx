@@ -13,7 +13,7 @@ const AddNewTask = React.forwardRef(({ className, ...props }, ref) => {
 
   return (
     <Input
-      className="w-full"
+      className="w-full dark:border-slate-400 "
       ref={addTaskRef}
       placeholder="Start typing to add new task..."
       onBlur={handleLostFocus}

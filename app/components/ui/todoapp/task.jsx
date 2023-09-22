@@ -19,7 +19,7 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
         className={
           isTaskDone()
             ? "line-through"
-            : "cursor-pointer group-hover/item:visible group/edit hover:bg-slate-200  rounded-lg border-2 drop-shadow-sm p-3 flex items-center space-x-2"
+            : "cursor-pointer group-hover/item:visible group/edit hover:bg-slate-200 dark:hover:bg-slate-700 dark:border-slate-400 rounded-lg border-2 drop-shadow-sm p-3 flex items-center space-x-2"
         }
       >
         {!isTaskDone() ? (
