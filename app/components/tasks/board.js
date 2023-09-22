@@ -19,12 +19,14 @@ export default function Board({ ...props }) {
   const handleAddTask = async (taskName) => {
     if (!!taskName) {
       await addTask(taskName, props.type.value);
+      props.handleMutate();
     }
   };
 
   const handleAccomplishTask = async (id) => {
     if (id !== null) {
       await moveTask(id);
+      props.handleMutate();
     }
   };
 
@@ -40,7 +42,7 @@ export default function Board({ ...props }) {
             <Task
               key={index}
               id={task.id}
-              handleAccomplishTask={handleAccomplishTask}
+              handleaccomplishtask={() => handleAccomplishTask(task.id)} 
               status={task.status}
             >
               {task.name}

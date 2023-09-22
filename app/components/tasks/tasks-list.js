@@ -6,7 +6,7 @@ import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 
 export default function TasksList() {
   const fetcher = (url) => fetch(url).then((res) => res.json());
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading, mutate } = useSWR(
     process.env.NEXT_PUBLIC_BACKEND_URL,
     fetcher
   );
@@ -14,13 +14,18 @@ export default function TasksList() {
   if (error) return <p>Failed to load data</p>;
   if (isLoading) return <p>Loading... ⏳</p>;
 
+  const handleMutate = () => {
+    mutate();
+  }
+
   return (
-    <div class="flex flex-wrap gap-7">
+    <div className="flex flex-wrap gap-7">
       {BOARD_TYPE.map((type, index) => (
         <Board
           key={index}
           type={type}
           tasks={data.filter((task) => task.status === type.value)}
+          handleMutate={handleMutate}
         ></Board>
       ))}
     </div>
