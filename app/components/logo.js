@@ -13,16 +13,7 @@ export default function Logo() {
           height={300}
           priority
         />
-      </div>
-      <div className={styles.header}>
-        <p>
-          A ToDo application is a digital tool designed to help users organize
-          and manage tasks and activities. It typically allows users to create,
-          prioritize, and track their to-do lists, set deadlines, and receive
-          reminders, making it easier to stay productive and organized in both
-          personal and professional life.
-        </p>
-      </div>
+      </div>     
     </header>
   );
 }
