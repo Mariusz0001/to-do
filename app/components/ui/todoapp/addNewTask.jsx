@@ -17,6 +17,13 @@ const AddNewTask = React.forwardRef(({ className, ...props }, ref) => {
       ref={addTaskRef}
       placeholder="Start typing to add new task..."
       onBlur={handleLostFocus}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          {
+            handleLostFocus();
+          }
+        }
+      }}
     ></Input>
   );
 });

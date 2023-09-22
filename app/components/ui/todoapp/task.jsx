@@ -4,26 +4,6 @@ import React, { useRef } from "react";
 import { Checkbox } from "../checkbox";
 import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 
-/*
-const Task = React.forwardRef(({ className, ...props }, ref) => {
-  const checkboxRef = useRef(null);
-  const handleClickCheckbox = async () =>
-    await props.handleaccomplishtask(props.id);
-
-    const isTaskDone = () =>
-    props.status != BOARD_TYPE[0].value && props.status != BOARD_TYPE[1].value;
-  
-  return (
-    <div>
-           <div  
-      >
-      {props.id} {props.handleaccomplishtask(props.id)}
-      <Checkbox onClick={handleClickCheckbox}></Checkbox>
-      </div>
-    </div>
-  );
-});
-*/
 const Task = React.forwardRef(({ className, ...props }, ref) => {
   const checkboxRef = useRef(null);
 
