@@ -10,8 +10,8 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
   const handleClickCheckbox = () => props.handleAccomplishTask(props.id);
 
   const isTaskDone = () =>
-    props.status != BOARD_TYPE.TO_DO.value && props.status != BOARD_TYPE.IN_PROGRESS.value;
-
+    props.status != BOARD_TYPE[0].value && props.status != BOARD_TYPE[1].value;
+  
   return (
     <div className="p-1">
       <div
