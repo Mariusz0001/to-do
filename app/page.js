@@ -1,6 +1,6 @@
 import Logo from "@/app/components/logo";
 import styles from "./styles/page.module.css";
-import Layout from "@/app/components/layout";
+import Layout from "@/app/layout";
 import TasksList from "@/app/components/tasks/tasks-list";
 import Description from "./components/description";
 

@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
         <head />
         <body>
           <ThemeProvider
-            className={inter.className}
+            className={`${inter.className}`}
             attribute="class"
             defaultTheme="system"
             enableSystem
