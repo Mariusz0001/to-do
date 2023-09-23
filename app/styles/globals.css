@@ -18,7 +18,7 @@
   --foreground-rgb: 0, 0, 0;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 80% 10% 3.9%;
  
 
     --primary-glow: conic-gradient(
@@ -83,7 +83,7 @@
   }
  
   .dark {
-    --background: 240 10% 3.9%;
+    --background-rgb: 10, 10, 10;
     --foreground: 0 0% 98%;
  
     --card: 240 10% 3.9%;
@@ -120,9 +120,9 @@
   
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: text-gray-100;
+    --background-start-rgb: bg-scale-600;
+    --background-end: bg-scale-200;
 
     --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
     --secondary-glow: linear-gradient(
@@ -146,8 +146,6 @@
 
     --callout-rgb: 20, 20, 20;
     --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
   }
 }
 
