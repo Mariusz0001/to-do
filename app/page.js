@@ -1,17 +1,14 @@
 import Logo from "@/app/components/logo";
-import styles from "./styles/page.module.css";
-import Layout from "@/app/layout";
-import TasksList from "@/app/components/tasks/tasks-list";
+import RootLayout from "@/app/layout";
 import Description from "./components/description";
+import GettingStartedButton from "./components/GettingStartedButton";
 
 export default function Home() {
   return (
-    <Layout>
+    <RootLayout>
       <Logo></Logo>
       <Description></Description>
-      <main className={styles.main}>
-          <TasksList></TasksList>
-      </main>
-    </Layout>
+      <GettingStartedButton></GettingStartedButton>
+    </RootLayout>
   );
 }
