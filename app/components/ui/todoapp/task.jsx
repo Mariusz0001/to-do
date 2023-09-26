@@ -38,7 +38,7 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
         )}
         <label
           htmlFor="taskCheckbox"
-          className="hover:h-100px font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           {truncateLongText(props.children, 100)}
         </label>
