@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
-import useSWR from "swr";
 import { addTask } from "@/app/lib/commands/addTask";
 import { moveTask } from "@/app/lib/commands/moveTask";
 
