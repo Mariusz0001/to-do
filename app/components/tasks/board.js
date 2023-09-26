@@ -30,7 +30,7 @@ export default function Board({ ...props }) {
 
   return (
     <>
-      <Card className="w-[25rem] pr-2">
+      <Card className="w-[98vw] md:w-[28vw] pr-2">
         <CardHeader>
           <CardTitle>{props.type.text}</CardTitle>
         </CardHeader>

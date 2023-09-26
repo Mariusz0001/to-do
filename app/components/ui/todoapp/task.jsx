@@ -13,6 +13,9 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
   const isTaskDone = () =>
     props.status != BOARD_TYPE[0].value && props.status != BOARD_TYPE[1].value;
 
+  const truncateLongText = (str, maxLength) =>
+    str.length > maxLength ? str.substring(0, maxLength - 3) + "..." : str;
+
   return (
     <div className="p-1" ref={ref}>
       <div
@@ -35,9 +38,9 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
         )}
         <label
           htmlFor="taskCheckbox"
-          className="font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="hover:h-100px font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
-          {props.children}
+          {truncateLongText(props.children, 100)}
         </label>
       </div>
     </div>

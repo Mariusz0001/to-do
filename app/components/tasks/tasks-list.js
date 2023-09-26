@@ -19,7 +19,7 @@ export default function TasksList() {
   }
 
   return (
-    <div className="flex flex-wrap gap-7">
+    <div className="flex flex-wrap lg:gap-7 sm:gap-2">
       {BOARD_TYPE.map((type, index) => (
         <Board
           key={index}
