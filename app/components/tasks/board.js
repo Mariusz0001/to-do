@@ -1,6 +1,5 @@
 "use client";
 
-import styles from "@/app/styles/tasks_list.module.css";
 import { Task } from "@/app/components/ui/todoapp/task";
 import { AddNewTask } from "@/app/components/ui/todoapp/addNewTask";
 import {
@@ -32,7 +31,7 @@ export default function Board({ ...props }) {
 
   return (
     <>
-      <Card className="w-[25rem] pr-2">
+      <Card className="w-[98vw] md:w-[28vw] pr-2">
         <CardHeader>
           <CardTitle>{props.type.text}</CardTitle>
         </CardHeader>
@@ -53,7 +52,6 @@ export default function Board({ ...props }) {
           <AddNewTask handleAddTask={handleAddTask} />
         </CardFooter>
       </Card>
-      <div className={styles.card}></div>
     </>
   );
 }
