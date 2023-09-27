@@ -6,8 +6,8 @@ export default function BoardPage() {
     <>
       <Logo></Logo>
 
-      <div className="flex justify-center pt-0">
-        <TasksList></TasksList>{" "}
+      <div className="flex justify-center px-2 py-10">
+        <TasksList></TasksList>
       </div>
     </>
   );

@@ -12,7 +12,6 @@ export default function TasksList() {
   );
 
   if (error) return <p>Failed to load data</p>;
-  if (isLoading) return <p>Loading... ⏳</p>;
 
   const handleMutate = () => {
     mutate();
@@ -24,7 +23,8 @@ export default function TasksList() {
         <Board
           key={index}
           type={type}
-          tasks={data.filter((task) => task.status === type.value)}
+          tasks={data != null && data.filter((task) => task.status === type.value)}
+          isLoading={isLoading}
           handleMutate={handleMutate}
         ></Board>
       ))}

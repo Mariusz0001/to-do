@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
             enableSystem
             disableTransitionOnChange
           >
-            <main>{children}</main>
+            <main className="min-h-screen">{children}</main>
           </ThemeProvider>
         </body>
       </html>
