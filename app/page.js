@@ -1,13 +1,13 @@
 import Logo from "@/app/components/logo";
 import Description from "./components/description";
-import GettingStartedButton from "./components/GettingStartedButton";
+import NavigationButton from "@/app/components/ui/todoapp/navigationButton";
 
 export default function Home() {
   return (
     <>
       <Logo></Logo>
       <Description></Description>
-      <GettingStartedButton></GettingStartedButton>
+      <NavigationButton pushUrl='/board'></NavigationButton>
     </>
   );
 }
