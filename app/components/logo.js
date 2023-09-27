@@ -10,7 +10,7 @@ export default function Logo() {
           src="/logo.svg"
           alt="ToDo app Logo"
           width={400}
-          height={300}
+          height={250}
           priority
         />
       </div>     
