@@ -7,8 +7,10 @@ import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 const Task = React.forwardRef(({ className, ...props }, ref) => {
   const checkboxRef = useRef(null);
 
-  const handleClickCheckbox = async () =>
-    await props.handleaccomplishtask(props.id);
+  const handleClickCheckbox = async () => {
+    if(props.id && props.id.length)
+      await props.handleaccomplishtask(props.id);
+  }
 
   const isTaskDone = () =>
     props.status != BOARD_TYPE[0].value && props.status != BOARD_TYPE[1].value;
@@ -22,22 +24,19 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
         className={
           isTaskDone()
             ? "line-through"
-            : "cursor-pointer group-hover/item:visible group/edit hover:bg-scale-200 dark:hover:bg-zinc-700 dark:border-zinc-800 rounded-lg border-2 drop-shadow-sm p-3 flex items-center space-x-2"
+            : "cursor-pointer hover:bg-scale-200 dark:hover:bg-zinc-700 dark:border-zinc-800 rounded-lg border-2 drop-shadow-sm p-3 flex items-center space-x-2"
         }
       >
-        {!isTaskDone() ? (
+        {!isTaskDone() &&
           <Checkbox
             id="taskCheckbox"
             className="p-2 default:ring-2 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:bg-zinc-700"
             ref={checkboxRef}
             checked={isTaskDone()}
             onClick={handleClickCheckbox}
-          ></Checkbox>
-        ) : (
-          <></>
-        )}
+          ></Checkbox>        
+        }
         <label
-          htmlFor="taskCheckbox"
           className="font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           {truncateLongText(props.children, 100)}
