@@ -5,7 +5,7 @@ import NavigationLink from "./ui/todoapp/navigationLink";
 
 export default function Navbar() {
   return (
-    <nav className="flex shrink-0 items-center justify-between bg-blue-300 dark:bg-zinc-800 p-1">
+    <nav className="flex shrink-0 items-center justify-between bg-gray-100 dark:bg-zinc-800 p-1">
       <div className="items-left">
         <Link href="/">
           <div className="hover:cursor-pointer flex justify-center items-center">
