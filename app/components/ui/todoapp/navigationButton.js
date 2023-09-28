@@ -9,7 +9,7 @@ const NavigationButton = (props) => {
   return (
     <div className="flex justify-center p-8">
       <Button onClick={() => router.push(props.pushUrl)}>
-        Getting started...
+        {props.children}
       </Button>
     </div>
   );

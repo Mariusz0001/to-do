@@ -1,3 +1,5 @@
+import NavigationButton from "@/app/components/ui/todoapp/navigationButton";
+
 export default function Description({ ...props }) {
   return (
     <ul
@@ -5,12 +7,9 @@ export default function Description({ ...props }) {
         "list-none font-sans subpixel-antialiased text-justify px-14 py-2"
       }
     >
-      <li className="font-semibold text-s">
-        Are you looking for a seamless and efficient way to manage your tasks
-        and stay organized? Look no further!{" "}
-        <a class="underline decoration-sky-500/30">Our TodoApp</a> is here to
-        simplify your life and boost your productivity!
-      </li>
+      <h1 className="text-5xl">Boost your productivity and take control of your tasks with our user-friendly Todo app – your path to achieving <a class="underline decoration-sky-500/30">more in less time</a></h1>
+     
+      <NavigationButton pushUrl='/board'>Try it for free</NavigationButton>
       <br></br>
       <li className="font-bold text-xl">
         🌟 Why Choose Our{" "}
