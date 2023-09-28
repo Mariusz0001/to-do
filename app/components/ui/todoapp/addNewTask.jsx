@@ -6,9 +6,16 @@ import { Input } from "@/app/components/ui/input";
 const AddNewTask = React.forwardRef(({ className, ...props }, ref) => {
   const addTaskRef = useRef(null);
 
+  const containsWhiteSpace = (taskValue) => 
+     !taskValue.replace(/\s/g, "").length ? true : false;
+  
   const handleLostFocus = () => {
-    props.handleAddTask(addTaskRef.current.value);
-    addTaskRef.current.value = null;
+    let taskValue = addTaskRef.current.value;
+
+    if (taskValue && taskValue.length && !containsWhiteSpace(taskValue)) {
+      props.handleAddTask(taskValue);
+      addTaskRef.current.value = null;
+    }
   };
 
   return (
