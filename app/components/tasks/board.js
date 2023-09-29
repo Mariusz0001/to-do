@@ -11,6 +11,7 @@ import {
 } from "@/app/components/ui/card";
 import { addTask } from "@/app/lib/commands/addTask";
 import { moveTask } from "@/app/lib/commands/moveTask";
+import { ScrollArea } from "@/app/components/ui/scroll-area";
 
 import { cn } from "@/app/lib/utils";
 
@@ -42,7 +43,8 @@ export default function Board({ ...props }) {
         <CardHeader>
           <CardTitle>{props.type.text}</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="">
+        <ScrollArea className="h-72 rounded-md border">
           {
             props.tasks &&
               props.tasks.length > 0 &&
@@ -56,6 +58,7 @@ export default function Board({ ...props }) {
                 </Task>
               ))
           }
+          </ScrollArea>
         </CardContent>
         <CardFooter>
           <AddNewTask handleAddTask={handleAddTask} />
