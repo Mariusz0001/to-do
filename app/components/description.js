@@ -8,7 +8,7 @@ export default function Description({ ...props }) {
         "list-none font-sans subpixel-antialiased text-clip px-4 py-2"
       }
     >
-      <div className="lg:flex lg:flex-reverse lg:shrink-0 flex flex-nowrap">
+      <div className="lg:flex lg:flex-nowrap lg:shrink-0 flex flex-wrap">
         <TaskAccomplishingImage></TaskAccomplishingImage>
         <h1 className="lg:text-5xl text-xl align-text-bottom">
           Boost your productivity and take control of your tasks with our

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function TaskAccomplishingImage() {
   return (
-    <div className="opacity-90">
+    <div className="opacity-90 justify-center">
         <Image
           src="/accomplishing_task.png"
           alt="Todo app"
