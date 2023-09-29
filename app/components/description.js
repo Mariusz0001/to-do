@@ -1,19 +1,26 @@
 import NavigationButton from "@/app/components/ui/todoapp/navigationButton";
+import TaskAccomplishingImage from "./task-accomplishing-image";
 
 export default function Description({ ...props }) {
   return (
     <ul
       className={
-        "list-none font-sans subpixel-antialiased text-justify px-14 py-2"
+        "list-none font-sans subpixel-antialiased text-clip px-4 py-2"
       }
     >
-      <h1 className="text-5xl">Boost your productivity and take control of your tasks with our user-friendly Todo app – your path to achieving <a class="underline decoration-sky-500/30">more in less time</a></h1>
-     
-      <NavigationButton pushUrl='/board'>Try it for free</NavigationButton>
+      <div className="lg:flex lg:flex-reverse lg:shrink-0 flex flex-nowrap">
+        <TaskAccomplishingImage></TaskAccomplishingImage>
+        <h1 className="lg:text-5xl text-xl align-text-bottom">
+          Boost your productivity and take control of your tasks with our
+          user-friendly Todo app – your path to achieving{" "}
+          <a className="underline decoration-sky-500/30">more in less time</a>
+        </h1>
+      </div>
+      <NavigationButton pushUrl="/board">Try it for free</NavigationButton>
       <br></br>
       <li className="font-bold text-xl">
-        🌟 Why Choose Our{" "}
-        <a class="underline decoration-sky-500/30">Our TodoApp</a>? 🌟
+        🌟 Why Choose
+        <a className="underline decoration-sky-500/30"> Our TodoApp</a>? 🌟
       </li>
       <br></br>
       <li className="font-bold text-xl">User-Friendly Interface:</li>
