@@ -23,18 +23,18 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
     str.length > maxLength ? str.substring(0, maxLength - 3) + "..." : str;
 
   return (
-    <div className="p-1" ref={ref}>
+    <div className="pt-1" ref={ref}>
       <div
         className={
           isTaskDone()
             ? "line-through"
-            : "cursor-pointer hover:bg-scale-200 dark:hover:bg-zinc-700 dark:border-zinc-800 rounded-lg border-2 drop-shadow-sm p-3 flex items-center space-x-2"
+            : "cursor-pointer drop-shadow-lg flex items-center space-x-3"
         }
       >
         {!isTaskDone() && (
           <Checkbox
             id="taskCheckbox"
-            className="p-2 default:ring-2 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:bg-zinc-700"
+            className="default:ring-2 w-5 h-5 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:bg-zinc-700"
             ref={checkboxRef}
             checked={isTaskDone()}
             onClick={handleClickCheckbox}

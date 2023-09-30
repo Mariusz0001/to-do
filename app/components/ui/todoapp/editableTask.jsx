@@ -13,23 +13,29 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
     !taskValue.replace(/\s/g, "").length ? true : false;
 
   const handleLostFocus = () => {
-    if (taskName && taskName.length && !containsWhiteSpace(taskName)) {
-      if (props.id && props.id.length) {
-        if (props.taskName != taskName) {
-          props.handleEditTask(props.id, taskName);
-        }
-      } else {
-        props.handleAddTask(taskName);
-        setTaskName("");
-      }
+    if (
+      !taskName ||
+      !taskName.length ||
+      containsWhiteSpace(taskName) ||
+      props.readOnly
+    )
+      return;
+
+    if (!props.id || !props.id.length) {
+      props.handleAddTask(taskName);
+      setTaskName("");
+      return;
+    }
+
+    if (props.taskName != taskName) {
+      props.handleEditTask(props.id, taskName);
+      return;
     }
   };
 
-  const handleChange = (e) =>
-  {
-    if(!props.readOnly)
-      setTaskName(e.target.value)
-  }
+  const handleChange = (e) => {
+    if (!props.readOnly) setTaskName(e.target.value);
+  };
 
   return (
     <Input
