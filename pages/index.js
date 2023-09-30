@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Description from "@/app/components/description";
-import  { Metadata } from 'next';
  
 export const metadata = {
   title: "To Do App",
