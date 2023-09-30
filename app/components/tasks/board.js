@@ -1,7 +1,7 @@
 "use client";
 
 import { Task } from "@/app/components/ui/todoapp/task";
-import { AddNewTask } from "@/app/components/ui/todoapp/addNewTask";
+import { EditableTask } from "@/app/components/ui/todoapp/editableTask";
 import {
   Card,
   CardContent,
@@ -14,6 +14,7 @@ import { moveTask } from "@/app/lib/commands/moveTask";
 import { ScrollArea } from "@/app/components/ui/scroll-area";
 
 import { cn } from "@/app/lib/utils";
+import { editTask } from "@/app/lib/commands/editTask";
 
 export default function Board({ ...props }) {
   const handleAddTask = async (taskName) => {
@@ -22,6 +23,11 @@ export default function Board({ ...props }) {
       props.handleMutate();
     }
   };
+
+  const handleEditTask = async (id, taskName) => {
+    await editTask(id, taskName);
+    props.handleMutate();
+  }
 
   const handleAccomplishTask = async (id) => {
     if (id !== null) {
@@ -43,8 +49,8 @@ export default function Board({ ...props }) {
         <CardHeader>
           <CardTitle>{props.type.text}</CardTitle>
         </CardHeader>
-        <CardContent className="">
-        <ScrollArea className="h-72 rounded-md border">
+        <CardContent>
+        <ScrollArea className="h-72">
           {
             props.tasks &&
               props.tasks.length > 0 &&
@@ -53,6 +59,7 @@ export default function Board({ ...props }) {
                   key={index}
                   id={task.id}
                   handleaccomplishtask={() => handleAccomplishTask(task.id)}
+                  handleEditTask={handleEditTask}
                   status={task.status}>
                   {task.name}
                 </Task>
@@ -61,7 +68,7 @@ export default function Board({ ...props }) {
           </ScrollArea>
         </CardContent>
         <CardFooter>
-          <AddNewTask handleAddTask={handleAddTask} />
+          <EditableTask handleAddTask={handleAddTask}></EditableTask>
         </CardFooter>
       </Card>
     </>
