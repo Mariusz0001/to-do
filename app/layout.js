@@ -5,12 +5,6 @@ import Navbar from "@/app/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "To Do App",
-  description:
-    "A ToDo application is a digital tool designed to help users organize and manage tasks and activities.",
-};
-
 export default function Layout({ children }) {
   return (
     <ThemeProvider
