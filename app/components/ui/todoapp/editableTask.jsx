@@ -25,6 +25,12 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
     }
   };
 
+  const handleChange = (e) =>
+  {
+    if(!props.readOnly)
+      setTaskName(e.target.value)
+  }
+
   return (
     <Input
       className="w-full dark:bg-zinc-900 dark:border-zinc-800"
@@ -32,7 +38,7 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
       placeholder="Start typing to add new task..."
       onBlur={handleLostFocus}
       readOnly={false}
-      onChange={(e) => setTaskName(e.target.value)}
+      onChange={(e) => handleChange(e)}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           {

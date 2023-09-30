@@ -40,7 +40,7 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
             onClick={handleClickCheckbox}
           ></Checkbox>
         )}
-        <EditableTask id={props.id} handleEditTask={handleEditTask}>{truncateLongText(props.children, 100)}</EditableTask>
+        <EditableTask id={props.id} handleEditTask={handleEditTask} readOnly={isTaskDone()}>{truncateLongText(props.children, 100)}</EditableTask>
       </div>
     </div>
   );
