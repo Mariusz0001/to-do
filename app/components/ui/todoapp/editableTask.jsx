@@ -5,7 +5,9 @@ import { Input } from "@/app/components/ui/input";
 
 const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
   const taskRef = useRef(null);
-  const [taskName, setTaskName] = useState(props.children ?? "");
+  const [taskName, setTaskName] = useState(
+    props.children && props.children.length ? props.children : ""
+  );
 
   const containsWhiteSpace = (taskValue) =>
     !taskValue.replace(/\s/g, "").length ? true : false;
@@ -13,7 +15,9 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
   const handleLostFocus = () => {
     if (taskName && taskName.length && !containsWhiteSpace(taskName)) {
       if (props.id && props.id.length) {
-        props.handleEditTask(props.id, taskName);
+        if (props.taskName != taskName) {
+          props.handleEditTask(props.id, taskName);
+        }
       } else {
         props.handleAddTask(taskName);
         setTaskName("");

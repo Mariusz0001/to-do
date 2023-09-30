@@ -50,7 +50,7 @@ export default function Board({ ...props }) {
           <CardTitle>{props.type.text}</CardTitle>
         </CardHeader>
         <CardContent>
-        <ScrollArea className="h-72 rounded-md border">
+        <ScrollArea className="h-72">
           {
             props.tasks &&
               props.tasks.length > 0 &&
