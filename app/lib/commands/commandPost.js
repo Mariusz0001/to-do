@@ -12,7 +12,7 @@ const commandPost = async (additionalURL, body) =>
     await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + additionalURL, params)
         .then((data) => {
           console.log("data", data);
-        })
+        })//todo disable on prod
         .then((res) => {
           console.log("res", res);
         })
