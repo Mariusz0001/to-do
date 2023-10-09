@@ -16,7 +16,12 @@ import { ScrollArea } from "@/app/components/ui/scroll-area";
 import { cn } from "@/app/lib/utils";
 import { editTask } from "@/app/lib/commands/editTask";
 
+import { Draggable } from "react-beautiful-dnd";
+import { useState } from "react";
+
 export default function Board({ ...props }) {
+  const [tasks, updateTasks] = useState(props.tasks);
+
   const handleAddTask = async (taskName) => {
     if (!!taskName) {
       await addTask(taskName, props.type.value);
@@ -27,7 +32,7 @@ export default function Board({ ...props }) {
   const handleEditTask = async (id, taskName) => {
     await editTask(id, taskName);
     props.handleMutate();
-  }
+  };
 
   const handleAccomplishTask = async (id) => {
     if (id !== null) {
@@ -50,21 +55,30 @@ export default function Board({ ...props }) {
           <CardTitle>{props.type.text}</CardTitle>
         </CardHeader>
         <CardContent>
-        <ScrollArea className="h-72">
-          {
-            props.tasks &&
+          <ScrollArea className="h-72">
+            {props.tasks &&
               props.tasks.length > 0 &&
-              props.tasks.map((task, index) => (
-                <Task
-                  key={index}
-                  id={task.id}
-                  handleaccomplishtask={() => handleAccomplishTask(task.id)}
-                  handleEditTask={handleEditTask}
-                  status={task.status}>
-                  {task.name}
-                </Task>
-              ))
-          }
+              props.tasks.map(({id, name, status}, index) => {
+                return (
+                  <Draggable key={props.type.value} draggableId={id} index={props.index}>
+                    {(provided) => (
+                      <Task
+                        id={id}
+                        handleaccomplishtask={() =>
+                          handleAccomplishTask(id)
+                        }
+                        handleEditTask={handleEditTask}
+                        status={status}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                      >
+                        {name}
+                      </Task>
+                    )}
+                  </Draggable>
+                );
+              })}
           </ScrollArea>
         </CardContent>
         <CardFooter>
