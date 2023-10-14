@@ -16,6 +16,12 @@ import { ScrollArea } from "@/app/components/ui/scroll-area";
 import { cn } from "@/app/lib/utils";
 import { editTask } from "@/app/lib/commands/editTask";
 
+import { useDroppable } from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+
 export default function Board({ ...props }) {
   const handleAddTask = async (taskName) => {
     if (!!taskName) {
@@ -27,7 +33,7 @@ export default function Board({ ...props }) {
   const handleEditTask = async (id, taskName) => {
     await editTask(id, taskName);
     props.handleMutate();
-  }
+  };
 
   const handleAccomplishTask = async (id) => {
     if (id !== null) {
@@ -35,6 +41,10 @@ export default function Board({ ...props }) {
       props.handleMutate();
     }
   };
+
+  const { setNodeRef } = useDroppable({
+    id: props.id,
+  });
 
   return (
     <>
@@ -50,21 +60,29 @@ export default function Board({ ...props }) {
           <CardTitle>{props.type.text}</CardTitle>
         </CardHeader>
         <CardContent>
-        <ScrollArea className="h-72">
-          {
-            props.tasks &&
-              props.tasks.length > 0 &&
-              props.tasks.map((task, index) => (
-                <Task
-                  key={index}
-                  id={task.id}
-                  handleaccomplishtask={() => handleAccomplishTask(task.id)}
-                  handleEditTask={handleEditTask}
-                  status={task.status}>
-                  {task.name}
-                </Task>
-              ))
-          }
+          <ScrollArea className="h-72">
+            {props.tasks && props.tasks.length > 0 && (
+              <SortableContext
+                id={props.type.value}
+                items={props.tasks}
+                strategy={verticalListSortingStrategy}
+              >
+                container
+                <div ref={setNodeRef}>
+                  {props.tasks.map((task, index) => (
+                    <Task
+                      key={index}
+                      id={task.id}
+                      handleaccomplishtask={() => handleAccomplishTask(task.id)}
+                      handleEditTask={handleEditTask}
+                      status={task.status}
+                    >
+                      {task.name}
+                    </Task>
+                  ))}
+                </div>
+              </SortableContext>
+            )}
           </ScrollArea>
         </CardContent>
         <CardFooter>

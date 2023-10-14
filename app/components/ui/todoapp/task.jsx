@@ -4,10 +4,14 @@ import React, { useRef } from "react";
 import { Checkbox } from "../checkbox";
 import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 import { EditableTask } from "./editableTask";
+import { useSortable } from "@dnd-kit/sortable";
 
 const Task = React.forwardRef(({ className, ...props }, ref) => {
   const checkboxRef = useRef(null);
-  const taskRef = useRef(null);
+
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: props.id 
+  });
 
   const handleClickCheckbox = async () => {
     if (props.id && props.id.length) await props.handleaccomplishtask(props.id);
@@ -23,7 +27,10 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
     str.length > maxLength ? str.substring(0, maxLength - 3) + "..." : str;
 
   return (
-    <div className="pt-1" ref={ref}>
+    <div className="pt-1" 
+    //ref={ref}     
+    ref={setNodeRef}
+    {...attributes} {...listeners}>
       <div
         className={
           isTaskDone()
