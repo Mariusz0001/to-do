@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@/app/components/ui/card";
 import { addTask } from "@/app/lib/commands/addTask";
-import { moveTask } from "@/app/lib/commands/moveTask";
 import { ScrollArea } from "@/app/components/ui/scroll-area";
 
 import { cn } from "@/app/lib/utils";
@@ -34,14 +33,6 @@ export default function Board({ ...props }) {
     await editTask(id, taskName);
     props.handleMutate();
   };
-
-  /*
-  const handleAccomplishTask = async (id) => {
-    if (id !== null) {
-      await moveTask(id);
-      props.handleMutate();
-    }
-  };*/
 
   const { setNodeRef } = useDroppable({
     id: props.id,
