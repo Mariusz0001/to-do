@@ -2,7 +2,6 @@
 
 import React, { useRef, useState } from "react";
 import { Input } from "@/app/components/ui/input";
-import { list } from "postcss";
 
 const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
   const [taskName, setTaskName] = useState(
@@ -38,9 +37,9 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
   };
 
   return (
-      <p
+      <Input
         className="w-full dark:bg-zinc-900 dark:border-zinc-800"
-       /* placeholder="Start typing to add new task..."
+        placeholder="Start typing to add new task..."
         onBlur={handleLostFocus}
         readOnly={false}
         onChange={(e) => handleChange(e)}
@@ -51,8 +50,8 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
             }
           }
         }}
-        value={taskName}*/
-      >{taskName}</p>
+        value={taskName}
+      ></Input>
   );
 });
 

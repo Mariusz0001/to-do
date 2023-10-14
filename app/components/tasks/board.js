@@ -35,12 +35,13 @@ export default function Board({ ...props }) {
     props.handleMutate();
   };
 
+  /*
   const handleAccomplishTask = async (id) => {
     if (id !== null) {
       await moveTask(id);
       props.handleMutate();
     }
-  };
+  };*/
 
   const { setNodeRef } = useDroppable({
     id: props.id,
@@ -67,13 +68,11 @@ export default function Board({ ...props }) {
                 items={props.tasks}
                 strategy={verticalListSortingStrategy}
               >
-                container
                 <div ref={setNodeRef}>
                   {props.tasks.map((task, index) => (
                     <Task
                       key={index}
                       id={task.id}
-                      handleaccomplishtask={() => handleAccomplishTask(task.id)}
                       handleEditTask={handleEditTask}
                       status={task.status}
                     >
