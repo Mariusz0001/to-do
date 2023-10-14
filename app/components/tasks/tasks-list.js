@@ -59,7 +59,7 @@ export default function TasksList() {
     setActiveId(null);*/
   };
 
-  function findContainer(id) {
+  function findContainer(id) { //todo useState on data
     return data.find((task) => task.id === id)?.status;
   }
 
