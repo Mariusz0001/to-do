@@ -21,7 +21,7 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
     str.length > maxLength ? str.substring(0, maxLength - 3) + "..." : str;
 
   return (
-    <>
+    <div className="border dark:border-zinc-800 drop-shadow-lg my-2 rounded-s">
       <div
         ref={ref}
         className={
@@ -38,13 +38,13 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
           {truncateLongText(props.children, 100)}
         </EditableTask>
       </div>
-      <div className="pt-1 flex  flex-wrap" ref={setNodeRef} {...attributes} {...listeners}>
-        <div className="w-[70%]"></div>
+      <div className="flex flex-wrap py-1" ref={setNodeRef} {...attributes} {...listeners}>
+        <div className="w-[85%]"></div>
         <div className="opacity-90 justify-center">
           <Image src="/avatar.svg" alt="avatar" width={32} height={32} />
         </div>
       </div>
-    </>
+    </div>
   );
 });
 Task.displayName = "Task";

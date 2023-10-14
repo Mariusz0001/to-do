@@ -38,7 +38,7 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
 
   return (
       <Input
-        className="w-full dark:border-0"
+        className="w-full border-0"
         placeholder="Start typing to add new task..."
         onBlur={handleLostFocus}
         readOnly={false}
