@@ -13,11 +13,6 @@ import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import Container from "./container";
 import { Item } from "./sortable_item";
 
-const wrapperStyle = {
-  display: "flex",
-  flexDirection: "row"
-};
-
 const defaultAnnouncements = {
   onDragStart(id) {
     console.log(`Picked up draggable item ${id}.`);
@@ -65,7 +60,8 @@ export default function Dnd() {
   
 
   return (
-    <div style={wrapperStyle}>
+    <div 
+    className="flex flex-wrap">
       <DndContext
         announcements={defaultAnnouncements}
         sensors={sensors}
