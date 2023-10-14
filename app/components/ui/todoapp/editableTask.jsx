@@ -26,7 +26,7 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
       return;
     }
 
-    if (props.taskName != taskName) {
+    if (props.children != taskName) {
       props.handleEditTask(props.id, taskName);
       return;
     }
