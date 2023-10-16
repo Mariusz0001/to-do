@@ -42,7 +42,7 @@ export default function Board({ ...props }) {
         className={cn(
           "w-[98vw] md:w-[28vw] pr-2 duration-700 ease-in-out",
           props.isLoading
-            ? "grayscale blur scale-105"
+            ? "grayscale blur scale-101 animate-pulse opacity-30"
             : "grayscale-0 blur-0 scale-100"
         )}
       >
