@@ -1,6 +1,6 @@
 import { commandPost } from "@/app/lib/commands/commandPost";
 
-const ADD_URL = "/move/";
+const ADD_URL = process.env.NEXT_PUBLIC_PERSONALTASKS_URL + "/move/";
 
 const moveTask = async (id) => {
   if (id !== null && id !== undefined) {

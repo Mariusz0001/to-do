@@ -1,6 +1,6 @@
 import { commandPost } from "@/app/lib/commands/commandPost";
 
-const ADD_URL = "/edit/";
+const ADD_URL = process.env.NEXT_PUBLIC_PERSONALTASKS_URL+"/edit/";
 
 const editTask = async (id, taskName) => {
   let body = {
