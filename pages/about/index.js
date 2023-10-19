@@ -2,31 +2,33 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <div className="grid grid-cols-2 gap-4 p-4 justify-items-stretch">
-      <h1 className="text-3xl col-span-2">Hi there!</h1>
-      <h2 className="text-xl mt-10 col-span-2">About the application</h2>
-      <p className="justify-center mt-5 ml-5 col-span-2">
-        The Todo app was created with the primary goal of learning and
-        experimentation. McFly wanted to challenge themselves to build a
-        practical web application from the ground up, exploring the capabilities
-        of Next.js, a popular framework for building modern web applications.
-        This project has been a playground for learning and growth, allowing
-        McFly to gain valuable experience and insights into web development.
-      </p>
-      <h2 className="text-xl col-span-2">About the author</h2>
-
-      <div class="col-span-2 lg:flex lg:flex-nowrap flex flex-wrap row-span-20">
-        <p className="justify-start mt-5 ml-5">
-          McFly, the creator of the Todo app, is a passionate and self-motivated
-          developer who loves to experiment with cutting-edge technologies. With
-          a deep-rooted interest in web development and a desire to share
-          knowledge, McFly embarked on this journey to build the Todo app using
-          Next.js.
-        </p>
-        <div className="p-6 opacity-90 justify-end lg:w-[80%] row-span-22">
+    <>
+      <div className="lg:flex lg:flex-nowrap justify-items-stretch">
+        <div className="p-10 pr-20 max-w-2xl">
+          <h1 className="lg:text-5xl text-xl col-span-2">nice to meet you</h1>
+          <div className="lg:text-lg">
+            <p className="justify-center mt-5 ml-5 col-span-2">
+              As the creator of this Todo app, my goal is to provide a valuable
+              and user-friendly tool for efficient task management. I'm
+              passionate about helping users stay organized and productive in a
+              way that makes their lives easier.
+            </p>
+            <p className="justify-center mt-5 ml-5 col-span-2">
+              Feel free to leave me your valuable via{" "}
+              <a
+                href="mailto:currapi@outlook.com"
+                className="underline decoration-cyan-300"
+              >
+                email
+              </a>{" "}
+              feedback; I truly appreciate your input 😉
+            </p>
+          </div>
+        </div>
+        <div className="">
           <Image
-            src="/dev_image.jpg"
-            className="rounded-xl float-right"
+            src="/about-page-image.png"
+            className="float-right"
             alt=""
             width={0}
             height={0}
@@ -35,22 +37,6 @@ export default function AboutPage() {
           />
         </div>
       </div>
-      <h1 className="text-xl col-span-2">Contact</h1>
-      <p className="justify-center mt-5 ml-5 col-span-2">
-        If you have any questions, suggestions, or feedback about the Todo app,
-        please feel free to reach out. You can contact McFly via{" "}
-        <a
-          href="mailto:currapi@outlook.com"
-          className="underline decoration-cyan-300"
-        >
-          email
-        </a>
-        . We welcome your input and appreciate your interest in our project.
-        Thank you for using the Todo app, and we hope it serves you well in
-        managing your tasks and improving your productivity. We look forward to
-        your continued support and involvement in our journey of learning and
-        development.
-      </p>
-    </div>
+    </>
   );
 }
