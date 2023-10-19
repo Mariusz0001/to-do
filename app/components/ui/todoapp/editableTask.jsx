@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { Input } from "@/app/components/ui/input";
+import { Textarea } from "@/app/components/ui/textarea";
 
 const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
   const taskRef = useRef(null);
@@ -38,22 +38,15 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
   };
 
   return (
-    <Input
+    <Textarea
       className="w-full dark:bg-zinc-900 dark:border-zinc-800"
       ref={taskRef}
       placeholder="Start typing to add new task..."
       onBlur={handleLostFocus}
       readOnly={false}
       onChange={(e) => handleChange(e)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          {
-            handleLostFocus();
-          }
-        }
-      }}
       value={taskName}
-    ></Input>
+    ></Textarea>
   );
 });
 

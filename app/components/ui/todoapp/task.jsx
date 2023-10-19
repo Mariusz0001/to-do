@@ -19,9 +19,6 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
   const isTaskDone = () =>
     props.status != BOARD_TYPE[0].value && props.status != BOARD_TYPE[1].value;
 
-  const truncateLongText = (str, maxLength) =>
-    str.length > maxLength ? str.substring(0, maxLength - 3) + "..." : str;
-
   return (
     <div className="pt-1" ref={ref}>
       <div
@@ -40,7 +37,7 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
             onClick={handleClickCheckbox}
           ></Checkbox>
         )}
-        <EditableTask id={props.id} handleEditTask={handleEditTask} readOnly={isTaskDone()}>{truncateLongText(props.children, 100)}</EditableTask>
+        <EditableTask id={props.id} handleEditTask={handleEditTask} readOnly={isTaskDone()}>{props.children}</EditableTask>
       </div>
     </div>
   );
