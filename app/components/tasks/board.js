@@ -15,8 +15,12 @@ import { ScrollArea } from "@/app/components/ui/scroll-area";
 
 import { cn } from "@/app/lib/utils";
 import { editTask } from "@/app/lib/commands/editTask";
+import { BOARD_TYPE } from "@/app/lib/enums/boardType";
+import { useReward } from "react-rewards";
 
 export default function Board({ ...props }) {
+  const { reward, isAnimating } = useReward('rewardId', 'confetti');
+
   const handleAddTask = async (taskName) => {
     if (!!taskName) {
       await addTask(taskName, props.type.value);
@@ -30,11 +34,17 @@ export default function Board({ ...props }) {
   }
 
   const handleAccomplishTask = async (id) => {
-    if (id !== null) {
+    if (id !== null) {  
+      if(isBoardInProgress() && !isAnimating)
+        reward();
+
       await moveTask(id);
       props.handleMutate();
     }
   };
+
+  const isBoardInProgress = () =>
+    props.type.value ==  BOARD_TYPE[1].value;
 
   return (
     <>
@@ -50,7 +60,9 @@ export default function Board({ ...props }) {
           <CardTitle>{props.type.text}</CardTitle>
         </CardHeader>
         <CardContent>
-        <ScrollArea className="h-72">
+       { isBoardInProgress() &&
+        <span id="rewardId" className="fixed top1/2 left1/2"/>}
+        <ScrollArea className="h-72" >
           {
             props.tasks &&
               props.tasks.length > 0 &&
