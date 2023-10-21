@@ -9,18 +9,8 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <div>
+    <div className="relative h-full w-full bg-cover  bg-center bg-fixed bg-no-repeat bg-[url('/bg-image-todo.png')]">
         <Description></Description>
-        <div className="pt-10 opacity-40">
-          <Image
-            src="/accomplishing_task_mobile.jpg"
-            width={0}
-            height={0}
-            alt="Todo app"
-            sizes="100vw"
-            style={{ width: "100%", height: "auto" }}
-          />
-        </div>
     </div>
   );
 }
