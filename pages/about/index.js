@@ -14,14 +14,14 @@ export default function AboutPage() {
               way that makes their lives easier.
             </p>
             <p className="justify-center mt-5 ml-5 col-span-2">
-              Feel free to leave me your valuable via{" "}
+              Feel free to leave me your valuable feedback via{" "}
               <a
                 href="mailto:currapi@outlook.com"
                 className="underline decoration-cyan-300"
               >
                 email
               </a>{" "}
-              feedback; I truly appreciate your input 😉
+              <p>I truly appreciate your input 😉</p>
             </p>
           </div>
         </div>
