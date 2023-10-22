@@ -1,13 +1,18 @@
 import "@/app/styles/globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/app/components/theme-provider";
-import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 import { AuthProvider } from "./lib/authProvider";
+import dynamic from "next/dynamic";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Layout({ children }) {
+  const Navbar = dynamic(
+    () => import( "@/app/components/navbar"),
+    { ssr: false }
+)
+
   return (
     <ThemeProvider
       className={`${inter.className}`}

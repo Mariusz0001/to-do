@@ -4,7 +4,6 @@ import { getUserToken, setUserToken } from "./utils";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-
   const [token, setToken] = useState(getUserToken() || "");
 
   const login = (newToken) => {
@@ -17,8 +16,10 @@ export const AuthProvider = ({ children }) => {
     setToken("");
   };
 
+  const isLoggedIn = !!token;
+
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ token, login, logout, isLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );
