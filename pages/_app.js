@@ -1,27 +1,15 @@
 import RootLayout from "@/app/layout";
-import { authenticate } from "@/app/lib/commands/authenticate";
-import { setUserToken } from "@/app/lib/utils";
 import "@/app/styles/globals.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useRouter } from 'next/router';
+import { getUserToken } from "@/app/lib/utils";
 
 export default function App({ Component, pageProps }) {
-  const [autheticated, setAuthenticated] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    if (!autheticated) authCheck();
+    if (!getUserToken()) router.push('/login');
   }, []);
-
-  const authCheck = async () => {
-    var result = await authenticate(
-      process.env.NEXT_PUBLIC_USER,
-      process.env.NEXT_PUBLIC_PASSWORD
-    );
-
-    if(result && result.token){
-      setUserToken(result.token);
-      setAuthenticated(true);
-    }
-  };
 
   return (
     <RootLayout>

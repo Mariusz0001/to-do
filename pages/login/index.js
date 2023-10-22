@@ -1,21 +1,36 @@
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { useState } from "react";
+import { authenticate } from "@/app/lib/commands/authenticate";
+import { setUserToken } from "@/app/lib/utils";
+import { useRouter } from 'next/router';
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setSetError] = useState(false);
 
-  const handleLogin = () => {
-    // Authentication logic here
+  const router = useRouter();
+
+  const handleLogin = async () => {
+    debugger;
+    var result = await authenticate(username, password);
+
+    if(result && result.token){
+      setUserToken(result.token);
+      router.push('/board');//todo redirect to last page
+    }
+    else{
+      setSetError(true);
+    }
   };
-
+  
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="bg-white dark:bg-zinc-800 p-8 rounded-lg shadow-md w-full max-w-md">
+      <div className="bg-white dark:bg-zinc-800 p-8 rounded-lg shadow-md w-full max-w-md space-y-5">
         <h1 className="text-2xl font-semibold mb-4">Login</h1>
+        {error && <p className="text-red-400">Invalid username or password</p>}
         <Input
           type="text"
           placeholder="Username"

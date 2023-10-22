@@ -19,6 +19,9 @@ export const authenticate = async (username, password) => {
       })
       .then(function (data) {
         return data;
+      })
+      .catch((error) => {
+        return error;
       });
   }
 };
