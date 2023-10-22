@@ -1,31 +1,13 @@
 import RootLayout from "@/app/layout";
-import { authenticate } from "@/app/lib/commands/authenticate";
-import { setUserToken } from "@/app/lib/utils";
 import "@/app/styles/globals.css";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
-  const [autheticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    if (!autheticated) authCheck();
-  }, []);
-
-  const authCheck = async () => {
-    var result = await authenticate(
-      process.env.NEXT_PUBLIC_USER,
-      process.env.NEXT_PUBLIC_PASSWORD
-    );
-
-    if(result && result.token){
-      setUserToken(result.token);
-      setAuthenticated(true);
-    }
-  };
+  const router = useRouter();
 
   return (
     <RootLayout>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
     </RootLayout>
   );
 }

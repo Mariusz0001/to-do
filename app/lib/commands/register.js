@@ -1,9 +1,10 @@
-const ADD_URL = "/user/login/";
+const ADD_URL = "/user/register/";
 
-export const authenticate = async (username, password) => {
-  if (username && username.length && password && password.length) {
+export const register = async (username, email, password) => {
+  if (username && username.length && password && password.length && email && email.length) {
     var details = {
       userName: username,
+      email: email,
       password: password,
     };
     return await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + ADD_URL, {
