@@ -17,8 +17,8 @@ export default function App({ Component, pageProps }) {
       process.env.NEXT_PUBLIC_PASSWORD
     );
 
-    if(result && result.access_token){
-      setUserToken(result.access_token);
+    if(result && result.token){
+      setUserToken(result.token);
       setAuthenticated(true);
     }
   };

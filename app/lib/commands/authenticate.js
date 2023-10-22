@@ -1,4 +1,4 @@
-const ADD_URL = "/tokens/connect/";
+const ADD_URL = "/user/login/";
 
 export const authenticate = async (username, password) => {
   if (username && username.length && password && password.length) {
@@ -6,21 +6,13 @@ export const authenticate = async (username, password) => {
       userName: username,
       password: password,
     };
-
-    var formBody = [];
-    for (var property in details) {
-      var encodedKey = encodeURIComponent(property);
-      var encodedValue = encodeURIComponent(details[property]);
-      formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
-
     return await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + ADD_URL, {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json;charset=utf-8"
       },
-      body: formBody,
+      body: JSON.stringify(details)
     })
       .then(function (response) {
         return response.json();
