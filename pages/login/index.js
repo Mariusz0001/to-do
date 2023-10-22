@@ -2,8 +2,8 @@ import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { useState } from "react";
 import { authenticate } from "@/app/lib/commands/authenticate";
-import { setUserToken } from "@/app/lib/utils";
 import { useRouter } from 'next/router';
+import { useAuth } from "@/app/lib/authProvider";
 
 
 const Login = () => {
@@ -12,13 +12,13 @@ const Login = () => {
   const [error, setSetError] = useState(false);
 
   const router = useRouter();
+  const { login } = useAuth();
 
   const handleLogin = async () => {
-    debugger;
     var result = await authenticate(username, password);
 
     if(result && result.token){
-      setUserToken(result.token);
+      login(result.token);
       router.push('/board');//todo redirect to last page
     }
     else{

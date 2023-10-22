@@ -1,19 +1,16 @@
 import RootLayout from "@/app/layout";
 import "@/app/styles/globals.css";
-import { useEffect } from "react";
-import { useRouter } from 'next/router';
-import { getUserToken } from "@/app/lib/utils";
+import { useRouter } from "next/router";
+import { AuthProvider } from "@/app/lib/authProvider";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
-  useEffect(() => {
-    if (!getUserToken()) router.push('/login');
-  }, []);
-
   return (
     <RootLayout>
-      <Component {...pageProps} />
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
     </RootLayout>
   );
 }
