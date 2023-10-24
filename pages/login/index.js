@@ -22,7 +22,7 @@ const Login = () => {
 
       if (result && result.token) {
         login(result.token);
-        router.push("/board"); //todo redirect to last page
+        router.back();
       } else {
         setError(true);
       }

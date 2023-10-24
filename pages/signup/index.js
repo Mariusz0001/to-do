@@ -37,7 +37,7 @@ const Signup = () => {
 
         if(result && result.token){
           login(result.token);
-          router.push('/board');//todo redirect...
+          router.back();
         }
         else if(result?.message){
           debugger;
