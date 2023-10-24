@@ -38,10 +38,23 @@ const Button = React.forwardRef(
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant, size, className }))}
         ref={ref}
+        disabled={props.isLoading}
         {...props}
-      />
+      >
+        {props.isLoading && (
+          <div
+            class="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full"
+            role="status"
+            aria-label="loading"
+          >
+            <span class="sr-only">Loading...</span>
+          </div>
+        )}
+         {props.children}
+      </Comp>
     );
   }
 );

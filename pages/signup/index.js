@@ -17,6 +17,8 @@ const Signup = () => {
 
   const router = useRouter();
   const { login } = useAuth();
+  
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -27,14 +29,15 @@ const Signup = () => {
       setError(errorMsg);
       return;
     }
-    try {
+    try {      
+        setIsLoading(true);
         setError("");
         debugger;
         var result = await register(form.username, form.email, form.password);
 
         if(result && result.token){
           login(result.token);
-          router.push('/board');//todo redirect...
+          router.back();
         }
         else if(result?.message){
           debugger;
@@ -43,6 +46,9 @@ const Signup = () => {
 
     } catch(e) {
       setError(e)
+    }
+    finally{
+      setIsLoading(false);
     }
   };
 
@@ -123,7 +129,7 @@ const Signup = () => {
             onChange={(e) => setForm({ ...form, passwordRep: e.target.value })}
             className="dark:bg-zinc-900 w-full p-2 mb-6 border rounded focus:outline-none"
           />
-          <Button onClick={handleRegister} className="w-full p-2">
+          <Button onClick={handleRegister} className="w-full p-2" isLoading={isLoading}>
             Register
           </Button>
         </div>

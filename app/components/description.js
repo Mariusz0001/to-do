@@ -1,11 +1,12 @@
 import NavigationButton from "@/app/components/ui/todoapp/navigationButton";
+import Link from "next/link";
 
 export default function Description({ ...props }) {
   return (
     <div>
       <div className="flex items-center justify-center">
         <section className="p-10 flex flex-nowrap items-center justify-center h-[80vh]">
-          <p className="p-5 text-2xl text-white bg-zinc-800 bg-opacity-70 rounded-xl">
+          <p className="p-5 text-2xl text-white bg-zinc-800 bg-opacity-90 rounded-xl">
             Boost your productivity and take control of your tasks with our
             user-friendly Todo app – your path to achieving{" "}
             <a className="underline decoration-sky-500/30">more in less time</a>
@@ -13,7 +14,7 @@ export default function Description({ ...props }) {
         </section>        
       </div>      
       <NavigationButton pushUrl="/board">Try it for free</NavigationButton>
-      <div className="bg-zinc-800 space-x-10 mb-4 p-20">
+      <div className="bg-slate-100 dark:bg-zinc-800 space-x-10 mb-4 p-20">
         <ul>
           <li className="font-bold text-xl">
             🌟 Why Choose
@@ -44,7 +45,7 @@ export default function Description({ ...props }) {
       </div>
       <section className="container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-center bg-cover custom-img">
         <div className="p-5 text-2xl text-white bg-zinc-800 bg-opacity-50 rounded-xl">
-          Create your account
+          <Link href="/signup">Create your account</Link>
         </div>
       </section>
     </div>
