@@ -10,12 +10,14 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
   const { login } = useAuth();
 
   const handleLogin = async () => {
     try {
+      setIsLoading(true);
       var result = await authenticate(username, password);
 
       if (result && result.token) {
@@ -26,6 +28,9 @@ const Login = () => {
       }
     } catch {
       setError(true);
+    }
+    finally{
+      setIsLoading(false);
     }
   };
 
@@ -48,7 +53,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="dark:bg-zinc-900 w-full p-2 mb-6 border rounded focus:outline-none"
         />
-        <Button onClick={handleLogin} className="w-full p-2">
+        <Button onClick={handleLogin} className="w-full p-2" isLoading={isLoading}>
           Login
         </Button>
         <div className="w-full justify-center items-center">
