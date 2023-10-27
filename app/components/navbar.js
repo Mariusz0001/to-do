@@ -5,11 +5,11 @@ import NavigationLink from "./ui/todoapp/navigationLink";
 import { useAuth } from "@/app/lib/authProvider";
 import { Button } from "./ui/button";
 import { useRouter } from "next/router";
+import Avatar from "./ui/todoapp/avatar";
 
 export default function Navbar() {
   const { logout, isLoggedIn } = useAuth();
   const router = useRouter();
-
 
   return (
     <nav className="flex shrink-0 items-center justify-between bg-gray-100 dark:bg-zinc-800 p-1 z-50">
@@ -32,8 +32,10 @@ export default function Navbar() {
         <NavigationLink url="/board">Board</NavigationLink>
         <NavigationLink url="/about">About</NavigationLink>
         <NavigationLink url="/lists">Lists</NavigationLink>
-        { isLoggedIn ? (
-          <Button onClick={() => logout()}>Logout</Button>
+        {isLoggedIn ? (
+          <button onClick={() => logout()} >
+            <Avatar width={35} height={35} />
+          </button>
         ) : (
           <Button onClick={() => router.push("/login")}>Login</Button>
         )}
