@@ -4,9 +4,13 @@ import React, { useRef } from "react";
 import { Checkbox } from "../checkbox";
 import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 import { EditableTask } from "./editableTask";
+import Image from "next/image";
+import { useAuth } from "@/app/lib/authProvider";
 
 const Task = React.forwardRef(({ className, ...props }, ref) => {
   const checkboxRef = useRef(null);
+
+  const { userName } = useAuth();
 
   const handleClickCheckbox = async () => {
     if (props.id && props.id.length) await props.handleaccomplishtask(props.id);
@@ -42,6 +46,18 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
         >
           {props.children}
         </EditableTask>
+      </div>
+      <div className="flex flex-nowrap py-2">
+        <div className="w-4/5"></div>
+        <div className="w-1/5">
+          <Image
+          className="rounded-full"
+            src={`https://avatar.oxro.io/avatar.svg?name=${userName}`}
+            alt=""
+            width={35}
+            height={35}
+          />
+        </div>
       </div>
     </div>
   );

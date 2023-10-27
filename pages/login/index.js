@@ -53,7 +53,8 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="dark:bg-zinc-900 w-full p-2 mb-6 border rounded focus:outline-none"
         />
-        <Button onClick={handleLogin} className="w-full p-2" isLoading={isLoading}>
+        <Button onClick={handleLogin} className="w-full p-2" isLoading={isLoading}
+        >
           Login
         </Button>
         <div className="w-full justify-center items-center">
