@@ -4,8 +4,8 @@ import React, { useRef } from "react";
 import { Checkbox } from "../checkbox";
 import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 import { EditableTask } from "./editableTask";
-import Image from "next/image";
 import Avatar from "./avatar";
+import Link from "next/link";
 
 const Task = React.forwardRef(({ className, ...props }, ref) => {
   const checkboxRef = useRef(null);
@@ -20,7 +20,12 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
     props.status != BOARD_TYPE[0].value && props.status != BOARD_TYPE[1].value;
 
   return (
-    <div className="pt-1" ref={ref}>
+    <Link className="pt-1" ref={ref}  href={{
+      pathname: `/task/`,
+      query: {
+        id: props.id,
+      },
+    }}>
       <div
         className={
           isTaskDone()
@@ -51,7 +56,7 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
           <Avatar width='35' height='35' userNameTooltip={true}/>
         </div>
       </div>
-    </div>
+    </Link>
   );
 });
 Task.displayName = "Task";
