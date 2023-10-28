@@ -1,5 +1,3 @@
-"use client";
-
 import { getUserToken } from "@/app/lib/utils";
 import { useEffect, useState } from "react";
 import { Input } from "@/app/components/ui/input";
@@ -9,20 +7,18 @@ import { Textarea } from "@/app/components/ui/textarea";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/app/components/ui/select";
 import { BOARD_TYPE } from "@/app/lib/enums/boardType";
-import Board from "@/app/components/tasks/board";
 import { Button } from "@/app/components/ui/button";
 import { PRIORITY } from "@/app/lib/enums/priority";
 
 export default function TaskDetails() {
   const router = useRouter();
   const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     let id = router.query.id;
@@ -42,21 +38,45 @@ export default function TaskDetails() {
 
   if (!data) return <>Loading..</>;
 
+  const validate = (form) => {
+    if (!form.name) {
+      return "Name is required.";
+    } else if (form.name.length < 2) {
+      return "Name should be longer than 2 chars.";
+    }
+    debugger;
+    if (!form.priority) {
+      return "Priority is required.";
+    }
+
+    if (!form.status) {
+      return "Status is required.";
+    }
+
+    return null;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
+
+    let errorMsg = validate(data);    
+    setError(validate(data));
+
+    if (errorMsg) 
+      return;    
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="lg:flex lg:flex-nowrap p-2">
         <div className="lg:basis-1/2 lg:mx-60 p-2">
+          {error && <p className="text-red-400">{error}</p>}
           <div className="mb-4 lg:w-3/4">
             <label
               htmlFor="name"
               className="block text-sm font-medium text-gray-600"
             >
-              Task Name
+              Name
             </label>
             <Input
               id="name"
@@ -72,7 +92,7 @@ export default function TaskDetails() {
               htmlFor="description"
               className="block text-sm font-medium text-gray-600"
             >
-              Task Description
+              Description
             </label>
             <Textarea
               id="description"
@@ -116,8 +136,8 @@ export default function TaskDetails() {
               Priority
             </label>
             <Select
-              onValueChange={(value) => setData({ ...data, status: value })}
-              defaultValue={data.status}
+              onValueChange={(value) => setData({ ...data, priority: value })}
+              defaultValue={data.priority}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Priority" />
@@ -165,7 +185,9 @@ export default function TaskDetails() {
         </div>
       </div>
       <div className="flex p-10 justify-center">
-        <Button type="submit" className="w-[300px]">Submit</Button>
+        <Button type="submit" className="w-[300px]">
+          Save
+        </Button>
       </div>
     </form>
   );
