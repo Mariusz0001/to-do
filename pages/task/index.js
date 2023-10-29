@@ -18,7 +18,7 @@ import { PRIORITY } from "@/app/lib/enums/priority";
 export default function TaskDetails() {
   const router = useRouter();
   const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     let id = router.query.id;
@@ -44,7 +44,6 @@ export default function TaskDetails() {
     } else if (form.name.length < 2) {
       return "Name should be longer than 2 chars.";
     }
-    debugger;
     if (!form.priority) {
       return "Priority is required.";
     }
@@ -58,7 +57,7 @@ export default function TaskDetails() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     let errorMsg = validate(data);    
     setError(validate(data));
 
