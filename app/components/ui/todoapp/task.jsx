@@ -20,12 +20,7 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
     props.status != BOARD_TYPE[0].value && props.status != BOARD_TYPE[1].value;
 
   return (
-    <Link className="pt-1" ref={ref}  href={{
-      pathname: `/task/`,
-      query: {
-        id: props.id,
-      },
-    }}>
+    <>
       <div
         className={
           isTaskDone()
@@ -50,13 +45,25 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
           {props.children}
         </EditableTask>
       </div>
-      <div className="flex flex-nowrap py-2">
-        <div className="w-4/5"></div>
-        <div className="w-1/5">
-          <Avatar width='35' height='35' userNameTooltip={true}/>
+
+      <Link
+        className="pt-1"
+        ref={ref}
+        href={{
+          pathname: `/task/`,
+          query: {
+            id: props.id,
+          },
+        }}
+      >
+        <div className="flex flex-nowrap py-2">
+          <div className="w-4/5"></div>
+          <div className="w-1/5">
+            <Avatar width="35" height="35" userNameTooltip={true} />
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </>
   );
 });
 Task.displayName = "Task";
