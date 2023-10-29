@@ -12,12 +12,14 @@ import {
   SelectValue,
 } from "@/app/components/ui/select";
 import { BOARD_TYPE } from "@/app/lib/enums/boardType";
-import { Button } from "@/app/components/ui/button";
 import { PRIORITY } from "@/app/lib/enums/priority";
+import Loading from "./loading";
+import { Button } from "@/app/components/ui/button";
 
 export default function TaskDetails() {
   const router = useRouter();
   const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export default function TaskDetails() {
     }
   }, [router.isReady]);
 
-  if (!data) return <>Loading..</>;
+  if (!data || isLoading) return <Loading />;
 
   const validate = (form) => {
     if (!form.name) {
@@ -57,39 +59,43 @@ export default function TaskDetails() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    setIsLoading(true);
 
     let errorMsg = validate(data);
     setError(validate(data));
 
-    if (errorMsg) return;
+    if (errorMsg) {
+      setIsLoading(false);
+      return;
+    }
 
-    const userData = {
-      id: data.id,
-      name: data.name,
-      description: data.description,
-      status: data.status,
-      priority: data.priority
-    };
-    axios
-      .post(
-        process.env.NEXT_PUBLIC_BACKEND_URL +
-          process.env.NEXT_PUBLIC_PERSONALTASKS_URL +
-          `/edit-details`,
-          userData,
-        { headers: { Authorization: `Bearer ${getUserToken()}` } }        
-      )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        if (error.response) {
-          setError(error.response);
-        } else if (error.request) {
-          setError(error.request);
-        } else {
-          setError(error.toJSON());
-        }
-      });
+    try {
+      axios
+        .post(
+          process.env.NEXT_PUBLIC_BACKEND_URL +
+            process.env.NEXT_PUBLIC_PERSONALTASKS_URL +
+            `/edit-details`,
+          data,
+          { headers: { Authorization: `Bearer ${getUserToken()}` } }
+        )
+        .then((response) => {
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          if (error.response) {
+            setError(error.response);
+          } else if (error.request) {
+            setError(error.request);
+          } else {
+            setError(error.toJSON());
+          }
+        });
+    } catch (e) {
+      setError(e);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -212,7 +218,7 @@ export default function TaskDetails() {
         </div>
       </div>
       <div className="flex p-10 justify-center">
-        <Button type="submit" className="w-[300px]">
+        <Button type="submit" className="w-[300px]" isLoading={isLoading}>
           Save
         </Button>
       </div>
