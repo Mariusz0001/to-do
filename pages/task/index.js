@@ -7,9 +7,7 @@ import { Textarea } from "@/app/components/ui/textarea";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/app/components/ui/select";
@@ -64,6 +62,34 @@ export default function TaskDetails() {
     setError(validate(data));
 
     if (errorMsg) return;
+
+    const userData = {
+      id: data.id,
+      name: data.name,
+      description: data.description,
+      status: data.status,
+      priority: data.priority
+    };
+    axios
+      .post(
+        process.env.NEXT_PUBLIC_BACKEND_URL +
+          process.env.NEXT_PUBLIC_PERSONALTASKS_URL +
+          `/edit-details`,
+          userData,
+        { headers: { Authorization: `Bearer ${getUserToken()}` } }        
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        if (error.response) {
+          setError(error.response);
+        } else if (error.request) {
+          setError(error.request);
+        } else {
+          setError(error.toJSON());
+        }
+      });
   };
 
   return (
@@ -97,7 +123,7 @@ export default function TaskDetails() {
             <Textarea
               id="description"
               name="description"
-              value={data.description}
+              value={data.description ? data.description : ""}
               onChange={(e) =>
                 setData({ ...data, description: e.target.value })
               }
