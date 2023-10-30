@@ -15,6 +15,8 @@ import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 import { PRIORITY } from "@/app/lib/enums/priority";
 import Loading from "./loading";
 import { Button } from "@/app/components/ui/button";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function TaskDetails() {
   const router = useRouter();
@@ -81,6 +83,14 @@ export default function TaskDetails() {
         )
         .then((response) => {
           setIsLoading(false);
+          toast('🦄 Saved successfully!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: true,
+            theme: "dark",
+            });
         })
         .catch((error) => {
           if (error.response) {
@@ -222,6 +232,7 @@ export default function TaskDetails() {
           Save
         </Button>
       </div>
+      <ToastContainer />
     </form>
   );
 }
