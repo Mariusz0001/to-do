@@ -72,7 +72,9 @@ export default function Board({ ...props }) {
                   id={task.id}
                   handleaccomplishtask={() => handleAccomplishTask(task.id)}
                   handleEditTask={handleEditTask}
-                  status={task.status}>
+                  status={task.status}
+                  createdBy={task.createdBy}
+                  priority={task.priority}>
                   {task.name}
                 </Task>
               ))
@@ -80,7 +82,7 @@ export default function Board({ ...props }) {
           </ScrollArea>
         </CardContent>
         <CardFooter>
-          <EditableTask handleAddTask={handleAddTask}></EditableTask>
+          <EditableTask handleAddTask={handleAddTask} className="border shadow-sm"></EditableTask>
         </CardFooter>
       </Card>
     </>

@@ -39,13 +39,15 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
 
   return (
     <Textarea
-      className="w-full dark:bg-zinc-900 dark:border-zinc-800"
+      className={"w-full min-h-[10px] h-10 max-h-[80px] dark:bg-zinc-900 dark:border-zinc-800"}
       ref={taskRef}
+      rows="1"
       placeholder="Start typing to add new task..."
       onBlur={handleLostFocus}
       readOnly={false}
       onChange={(e) => handleChange(e)}
       value={taskName}
+      {...props}
     ></Textarea>
   );
 });

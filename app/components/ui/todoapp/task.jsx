@@ -6,6 +6,7 @@ import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 import { EditableTask } from "./editableTask";
 import Avatar from "./avatar";
 import Link from "next/link";
+import Priority from "./priority";
 
 const Task = React.forwardRef(({ className, ...props }, ref) => {
   const checkboxRef = useRef(null);
@@ -20,17 +21,17 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
     props.status != BOARD_TYPE[0].value && props.status != BOARD_TYPE[1].value;
 
   return (
-    <>
+    <div className="border rounded-sm p-2 dark:border-zinc-800">
       <div
         className={
           isTaskDone()
-            ? "line-through drop-shadow-lg flex items-center space-x-3"
-            : "cursor-pointer drop-shadow-lg flex items-center space-x-3"
+            ? "line-through flex flex-nowrap"
+            : "cursor-pointer flex flex-nowrap"
         }
       >
         <Checkbox
           id="taskCheckbox"
-          className="default:ring-2 w-5 h-5 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:bg-zinc-700"
+          className="default:ring-2 w-5 h-5 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:bg-zinc-700 mt-2"
           ref={checkboxRef}
           checked={isTaskDone()}
           disabled={isTaskDone()}
@@ -56,14 +57,26 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
           },
         }}
       >
-        <div className="flex flex-nowrap py-2">
-          <div className="w-4/5"></div>
-          <div className="w-1/5">
-            <Avatar width="35" height="35" userNameTooltip={true} />
+        <div className="flow-root py-2">
+          <div className="float-right ml-4">
+            <Avatar
+              width="30"
+              height="30"
+              userNameTooltip={true}
+              userName={props.createdBy}
+            />
+          </div>
+          <div className="float-right ml-4">
+            <Priority
+              width="30"
+              height="30"
+              userNameTooltip={true}
+              priority={props.priority}
+            />
           </div>
         </div>
       </Link>
-    </>
+    </div>
   );
 });
 Task.displayName = "Task";

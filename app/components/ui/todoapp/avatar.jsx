@@ -1,19 +1,16 @@
-import { useAuth } from "@/app/lib/authProvider";
 import Image from "next/image";
-
 
 export default function Avatar({userNameTooltip, ...props}) 
 {
-  const { userName } = useAuth();
-
+  const getUserNameLetters = () => props.userName && props.userName.substring(0,1);
   return (
     <Image
       className="rounded-full"
-      src={`https://avatar.oxro.io/avatar.svg?name=${userName}`}
+      src={`https://avatar.oxro.io/avatar.svg?name=${getUserNameLetters()}`}
       alt=""
       width={props.width}
       height={props.height}
-      title= { userNameTooltip && userName }
+      title= { userNameTooltip && props.userName }
     />
   );
 };
