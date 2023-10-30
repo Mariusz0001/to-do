@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Avatar from "./ui/todoapp/avatar";
 
 export default function Navbar() {
-  const { logout, isLoggedIn } = useAuth();
+  const { logout, isLoggedIn, userName } = useAuth();
   const router = useRouter();
 
   return (
@@ -34,7 +34,7 @@ export default function Navbar() {
         <NavigationLink url="/lists">Lists</NavigationLink>
         {isLoggedIn ? (
           <button onClick={() => logout()} >
-            <Avatar width={35} height={35} />
+            <Avatar width={35} height={35} userName={userName}/>
           </button>
         ) : (
           <Button onClick={() => router.push("/login")}>Login</Button>
