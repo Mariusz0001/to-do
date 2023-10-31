@@ -14,7 +14,7 @@ export default function Navbar() {
   return (
     <nav className="flex shrink-0 items-center justify-between bg-gray-100 dark:bg-zinc-800 p-1 z-50">
       <div className="items-left">
-        <Link href="/">
+        <Link href="/home">
           <div className="hover:cursor-pointer flex justify-center items-center">
             <Image
               className={styles.logo}
@@ -31,7 +31,6 @@ export default function Navbar() {
       <div className="flex shrink-0 lg:items-center lg:w-auto text-sm">
         <NavigationLink url="/board">Board</NavigationLink>
         <NavigationLink url="/about">About</NavigationLink>
-        <NavigationLink url="/lists">Lists</NavigationLink>
         {isLoggedIn ? (
           <UserMenu/>
         ) : (
