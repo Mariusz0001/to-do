@@ -22,7 +22,7 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
       return;
 
     if (!props.id || !props.id.length) {
-      props.handleAddTask(taskName);
+      props.handleaddtask(taskName);
       setTaskName("");
       return;
     }
@@ -47,7 +47,6 @@ const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
       readOnly={false}
       onChange={(e) => handleChange(e)}
       value={taskName}
-      {...props}
     ></Textarea>
   );
 });

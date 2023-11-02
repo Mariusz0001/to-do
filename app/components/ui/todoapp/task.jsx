@@ -40,7 +40,7 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
 
         <EditableTask
           id={props.id}
-          handleEditTask={handleEditTask}
+          handleedittask={handleEditTask}
           readOnly={isTaskDone()}
         >
           {props.children}
