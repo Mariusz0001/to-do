@@ -1,6 +1,8 @@
-import Image from "next/image";
 import Description from "@/app/components/description";
- 
+import { useAuth } from "@/app/lib/authProvider";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
 export const metadata = {
   title: "To Do App",
   description:
@@ -8,9 +10,12 @@ export const metadata = {
 };
 
 export default function Page() {
-  return (
-    <div className="relative h-full w-full bg-cover  bg-center bg-fixed bg-no-repeat bg-[url('/bg-image-todo.png')]">
-        <Description></Description>
-    </div>
-  );
+  const { isLoggedIn } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoggedIn) router.push("/home");
+  }, []);
+
+  return <Description />;
 }
