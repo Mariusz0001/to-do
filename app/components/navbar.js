@@ -3,7 +3,6 @@ import Link from "next/link";
 import styles from "../styles/logo.module.css";
 import NavigationLink from "./ui/todoapp/navigationLink";
 import { useAuth } from "@/app/lib/authProvider";
-import { Button } from "./ui/button";
 import { useRouter } from "next/router";
 import UserMenu from "./ui/todoapp/userMenu";
 

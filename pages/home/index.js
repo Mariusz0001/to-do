@@ -2,19 +2,22 @@
 import Logo from "@/app/components/logo";
 import { useAuth } from "@/app/lib/authProvider";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const UserDashboard = () => {
   const { isLoggedIn } = useAuth();
   const router = useRouter();
 
-  if (!isLoggedIn) router.push("/");
+  useEffect(() => {
+    if (!isLoggedIn) router.push("/");
+  }, []);
 
   const tasksDone = 5; // todo Replace with the actual number of tasks done
   const tasksRemaining = 10; // todo Replace with the actual number of tasks remaining
 
   return (
     <div className="lg:space-x-10 mb-4 lg:p-20 break-words">
-      <div className="mt-10 p-6 w-max h-[50vh]">
+      <div className="mt-10 p-6 w-[90vw] h-[50vh]">
         <div className="lg:text-3xl text-2xl font-semibold dark:text-zinc-500">
           Thank You for Choosing Todoapp
         </div>
