@@ -35,7 +35,7 @@ const UserDashboard = () => {
     const items = data?.find(item => item.status === status);
     return items ? items.count : 0;
   };
-  
+
   const tasksDone = getTasksCountByStatus(BOARD_TYPE[2].value);
   const tasksRemaining = getTasksCountByStatus(BOARD_TYPE[0].value) + getTasksCountByStatus(BOARD_TYPE[1].value);;
   return (
@@ -49,7 +49,7 @@ const UserDashboard = () => {
         </div>
         Your productivity matters to us!
 
-        {data && data.length && 
+        {data &&
           <div className="mt-4 flex flex-shrink space-y-10">
             <div className="text-xl font-semibold">
               Tasks Completed 🎉{" "}

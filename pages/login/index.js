@@ -13,7 +13,10 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-  const { login } = useAuth();
+  const { login, isLoggedIn } = useAuth();
+
+  if(isLoggedIn)
+    router.push("/home");
 
   const handleLogin = async () => {
     try {

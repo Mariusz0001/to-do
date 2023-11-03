@@ -7,7 +7,7 @@ export default function Avatar({userNameTooltip, ...props})
     <Image
       className="rounded-full"
       src={`https://avatar.oxro.io/avatar.svg?name=${getUserNameLetters()}`}
-      alt=""
+      alt={props.userName}
       width={props.width}
       height={props.height}
       title= { userNameTooltip && props.userName }
