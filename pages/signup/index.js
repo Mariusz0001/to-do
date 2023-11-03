@@ -32,7 +32,6 @@ const Signup = () => {
     try {      
         setIsLoading(true);
         setError("");
-        debugger;
         var result = await register(form.username, form.email, form.password);
 
         if(result && result.token){
@@ -40,7 +39,6 @@ const Signup = () => {
           router.back();
         }
         else if(result?.message){
-          debugger;
           throw result.message;
         }
 
