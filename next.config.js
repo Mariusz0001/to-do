@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    dangerouslyAllowSVG: true,
+    domains: ["avatar.oxro.io"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
