@@ -19,7 +19,7 @@ import { BOARD_TYPE } from "@/app/lib/enums/boardType";
 import { useReward } from "react-rewards";
 
 export default function Board({ ...props }) {
-  const { reward, isAnimating } = useReward('rewardId', 'confetti');
+  const { reward, isAnimating } = useReward("rewardId", "confetti");
 
   const handleAddTask = async (taskName) => {
     if (!!taskName) {
@@ -31,20 +31,18 @@ export default function Board({ ...props }) {
   const handleEditTask = async (id, taskName) => {
     await editTask(id, taskName);
     props.handleMutate();
-  }
+  };
 
   const handleAccomplishTask = async (id) => {
-    if (id !== null) {  
-      if(isBoardInProgress() && !isAnimating)
-        reward();
+    if (id !== null) {
+      if (isBoardInProgress() && !isAnimating) reward();
 
       await moveTask(id);
       props.handleMutate();
     }
   };
 
-  const isBoardInProgress = () =>
-    props.type.value ==  BOARD_TYPE[1].value;
+  const isBoardInProgress = () => props.type.value == BOARD_TYPE[1].value;
 
   return (
     <>
@@ -60,12 +58,11 @@ export default function Board({ ...props }) {
           <CardTitle>{props.type.text}</CardTitle>
         </CardHeader>
         <CardContent>
-       { isBoardInProgress() &&
-        <span id="rewardId" className="fixed top1/2 left1/2"/>}
-        <ScrollArea className="h-72" >
-          {
-            props.tasks &&
-              props.tasks.length > 0 &&
+          {isBoardInProgress() && (
+            <span id="rewardId" className="fixed top1/2 left1/2" />
+          )}
+          <ScrollArea className="h-72">
+            {props.tasks && props.tasks.length > 0 ? (
               props.tasks.map((task, index) => (
                 <Task
                   key={index}
@@ -74,15 +71,21 @@ export default function Board({ ...props }) {
                   handleedittask={handleEditTask}
                   status={task.status}
                   createdBy={task.createdBy}
-                  priority={task.priority}>
+                  priority={task.priority}
+                >
                   {task.name}
                 </Task>
               ))
-          }
+            ) : (
+              <></>
+            )}
           </ScrollArea>
         </CardContent>
         <CardFooter>
-          <EditableTask handleaddtask={handleAddTask} className="border shadow-sm"></EditableTask>
+          <EditableTask
+            handleaddtask={handleAddTask}
+            className="border shadow-sm"
+          ></EditableTask>
         </CardFooter>
       </Card>
     </>
