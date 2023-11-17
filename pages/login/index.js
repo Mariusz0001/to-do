@@ -8,6 +8,7 @@ import NavigationLink from "@/app/components/ui/todoapp/navigationLink";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { LOGIN_PROVIDER_TYPE } from "@/app/lib/enums/loginProviderType";
 import { authenticateWithProvider } from "@/app/lib/commands/authenticateWithProvider";
+import { googleLogout } from '@react-oauth/google';
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -27,6 +28,7 @@ const Login = () => {
 
       if (result && result.token) {
         login(result.token);
+        googleLogout();
         router.back();
       } else {
         setError("Invalid username or password");
@@ -67,36 +69,39 @@ const Login = () => {
         <div className="w-full justify-center items-center">
           <NavigationLink url="/signup">or, sign up</NavigationLink>
         </div>
-        <div className="w-full justify-center items-center" style={{ colorScheme: 'light'}}>
-        <GoogleOAuthProvider clientId="989615753316-q92qkqpc79979a01daib0virp5k5c5ag.apps.googleusercontent.com">
-          <GoogleLogin
-            theme='filled_blue'
-            shape="rectangular"
-            width={150}
-            onSuccess={async (credentialResponse) => {
-              try {
-                setIsLoading(true);
-                let data = await authenticateWithProvider(
-                  LOGIN_PROVIDER_TYPE.GOOGLE,
-                  credentialResponse.credential
-                );
-                if (data?.token) {
-                  await login(data.token);
-                  setStoragePictureUrl(data.pictureUrl)
-                  router.back();
-                } else setError("Login failed");
-              } catch (e) {
-                console.log(e);
+        <div
+          className="w-full justify-center items-center"
+          style={{ colorScheme: "light" }}
+        >
+          <GoogleOAuthProvider clientId="989615753316-q92qkqpc79979a01daib0virp5k5c5ag.apps.googleusercontent.com">
+            <GoogleLogin
+              theme="filled_blue"
+              shape="rectangular"
+              width={150}
+              onSuccess={async (credentialResponse) => {
+                try {
+                  setIsLoading(true);
+                  let data = await authenticateWithProvider(
+                    LOGIN_PROVIDER_TYPE.GOOGLE,
+                    credentialResponse.credential
+                  );
+                  if (data?.token) {
+                    await login(data.token);
+                    setStoragePictureUrl(data.pictureUrl);
+                    router.back();
+                  } else setError("Login failed");
+                } catch (e) {
+                  console.log(e);
+                  setError("Login failed");
+                } finally {
+                  setIsLoading(false);
+                }
+              }}
+              onError={() => {
                 setError("Login failed");
-              } finally {
-                setIsLoading(false);
-              }
-            }}
-            onError={() => {
-              setError("Login failed");
-            }}
-          />
-        </GoogleOAuthProvider>
+              }}
+            />
+          </GoogleOAuthProvider>
         </div>
       </div>
     </div>

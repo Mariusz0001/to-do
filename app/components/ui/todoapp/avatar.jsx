@@ -4,8 +4,6 @@ export default function Avatar({userNameTooltip, pictureUrl, ...props})
 {
   const getUserNameLetters = () => props.userName && props.userName.substring(0,1);
 
-  debugger;
-  console.log(pictureUrl);
   return (
     <Image
       className="rounded-full"
