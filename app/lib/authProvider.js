@@ -1,11 +1,12 @@
 import { createContext, useContext, useState } from "react";
-import { getUserName, getUserToken, setUserName, setUserToken } from "./utils";
+import { getStoragePictureUrl, setStoragePictureUrl, getUserName, getUserToken, setUserName, setUserToken } from "./utils";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setTokenState] = useState(getUserToken() || "");
   const [userName, setUserNameState] = useState(getUserName() || "");
+  const [pictureUrl, setPictureUrl] = useState(getStoragePictureUrl() || "");
 
   const setUserAuthAndState = (token, userName) => {
     setUserToken(token);
@@ -39,7 +40,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ token, login, logout, isLoggedIn, userName }}
+      value={{ token, login, logout, isLoggedIn, userName, pictureUrl, setStoragePictureUrl }}
     >
       {children}
     </AuthContext.Provider>

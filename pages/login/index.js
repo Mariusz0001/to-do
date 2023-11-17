@@ -16,7 +16,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-  const { login, isLoggedIn } = useAuth();
+  const { login, isLoggedIn, setStoragePictureUrl } = useAuth();
 
   if (isLoggedIn) router.push("/home");
 
@@ -67,18 +67,22 @@ const Login = () => {
         <div className="w-full justify-center items-center">
           <NavigationLink url="/signup">or, sign up</NavigationLink>
         </div>
-
+        <div className="w-full justify-center items-center" style={{ colorScheme: 'light'}}>
         <GoogleOAuthProvider clientId="989615753316-q92qkqpc79979a01daib0virp5k5c5ag.apps.googleusercontent.com">
           <GoogleLogin
+            theme='filled_blue'
+            shape="rectangular"
+            width={150}
             onSuccess={async (credentialResponse) => {
               try {
                 setIsLoading(true);
-                let token = await authenticateWithProvider(
+                let data = await authenticateWithProvider(
                   LOGIN_PROVIDER_TYPE.GOOGLE,
                   credentialResponse.credential
                 );
-                if (token) {
-                  await login(token);
+                if (data?.token) {
+                  await login(data.token);
+                  setStoragePictureUrl(data.pictureUrl)
                   router.back();
                 } else setError("Login failed");
               } catch (e) {
@@ -93,6 +97,7 @@ const Login = () => {
             }}
           />
         </GoogleOAuthProvider>
+        </div>
       </div>
     </div>
   );

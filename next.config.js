@@ -2,7 +2,8 @@
 const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
-    domains: ["avatar.oxro.io"],
+    domains: ["avatar.oxro.io",
+              "lh3.googleusercontent.com"],
   },
 };
 

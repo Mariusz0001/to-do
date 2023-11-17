@@ -9,11 +9,11 @@ import {
   DropdownMenuTrigger,
 } from "@/app/components/ui/dropdown-menu";
 import Avatar from "./avatar";
-import { useAuth, logout } from "@/app/lib/authProvider";
+import { useAuth } from "@/app/lib/authProvider";
 import { useRouter } from "next/router";
 
 const UserMenu = () => {
-  const { userName, logout } = useAuth(); 
+  const { userName, logout, pictureUrl } = useAuth(); 
   const router = useRouter();
 
   const handleOpenProfile = () => {
@@ -28,7 +28,7 @@ const UserMenu = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button onClick={() => logout()}>
-            <Avatar width={40} height={40} userName={userName} />
+            <Avatar width={40} height={40} userName={userName} pictureUrl={pictureUrl} />
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
