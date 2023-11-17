@@ -19,6 +19,13 @@ export const getUserName = () => {
   return getStorageItem(process.env.NEXT_PUBLIC_USERNAME_STORAGE_PATH);
 };
 
+export const setStoragePictureUrl = (data) =>
+  setStorageItem(process.env.NEXT_PUBLIC_PICTURE_URL_STORAGE_PATH, data);
+
+export const getStoragePictureUrl = () => {
+  return getStorageItem(process.env.NEXT_PUBLIC_PICTURE_URL_STORAGE_PATH);
+};
+
 const setStorageItem = (item, value) =>
   typeof window !== "undefined"
     ? window.localStorage.setItem(item, value)

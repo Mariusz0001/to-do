@@ -26,7 +26,7 @@ export default function Profile() {
 
   return (
     <div className="lg:space-x-10 mb-4 lg:p-20 break-words">
-      <Avatar width={100} height={100} userName={data.userName} />
+      <Avatar width={100} height={100} userName={data.userName}/>
       <div className="p-6 w-[90vw] h-[10vh]"></div>
       <div className="p-4 shadow-md rounded-md">
         <h2 className="text-2xl font-semibold mb-2">User Profile</h2>
