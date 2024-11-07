@@ -3,13 +3,20 @@ import { Button } from "@/app/components/ui/button";
 import { authenticate } from "../lib/commands/authenticate";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/lib/authProvider";
+import { useState } from "react";
 
 export default function Description({ ...props }) {
   const router = useRouter();
-  const { login } = useAuth();
-  
+  const { login, isLoggedIn } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+
+  if (isLoggedIn) router.push("/home");
+
   //TODO DELETE THIS, ONLY FOR TESTS PURPOUSE
   const handleLogin = async (username, password) => {
+    try
+    {
+    setIsLoading(true);
       var result = await authenticate(username, password);
       if (result && result.token) {
         login(result.token);
@@ -18,6 +25,11 @@ export default function Description({ ...props }) {
       } else {
         router.push("/board");
       }
+    }
+    finally
+    {
+    setIsLoading(false);
+    }
   };
 
   return (
@@ -32,7 +44,8 @@ export default function Description({ ...props }) {
         </div>        
       </div>      
       <div className="flex justify-center p-8">
-      <Button onClick={() => handleLogin(process.env.NEXT_PUBLIC_TEST_USERNAME, process.env.NEXT_PUBLIC_TEST_PASS)}>
+      <Button onClick={() => handleLogin(process.env.NEXT_PUBLIC_TEST_USERNAME, process.env.NEXT_PUBLIC_TEST_PASS)}
+        isLoading={isLoading}>
         Try it for free
       </Button>
       </div>
