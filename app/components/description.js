@@ -1,5 +1,7 @@
 import NavigationButton from "@/app/components/ui/todoapp/navigationButton";
 import Link from "next/link";
+import { Button } from "@/app/components/ui/button";
+import { authenticate } from "../lib/commands/authenticate";
 
 export default function Description({ ...props }) {
   return (
@@ -13,7 +15,9 @@ export default function Description({ ...props }) {
           </p>          
         </div>        
       </div>      
-      <NavigationButton pushUrl="/board">Try it for free</NavigationButton>
+      <Button onClick={() => authenticate("RK}5#C%FTa;wt)#4,=74;v", "Lk8Kgz.LeS.zEJ94{^{Ehf")}>
+        Try it for free
+      </Button>
       <div className="bg-slate-100 dark:bg-zinc-800 space-x-10 mb-4 p-20">
         <ul>
           <li className="font-bold text-xl">
