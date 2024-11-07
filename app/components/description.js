@@ -13,7 +13,7 @@ export default function Description({ ...props }) {
       if (result && result.token) {
         login(result.token);
         googleLogout();
-        router.back();
+        router.push("/board");
       } else {
         router.push("/board");
       }
@@ -31,7 +31,7 @@ export default function Description({ ...props }) {
         </div>        
       </div>      
       <div className="flex justify-center p-8">
-      <Button onClick={() => handleLogin("RK5CFTawt474v", "Lk8Kgz.LeS.zEJ94{^{Ehf")}>
+      <Button onClick={() => handleLogin(process.env.NEXT_PUBLIC_TEST_USERNAME, process.env.NEXT_PUBLIC_TEST_PASS)}>
         Try it for free
       </Button>
       </div>
