@@ -31,7 +31,7 @@ export default function Description({ ...props }) {
         </div>        
       </div>      
       <div className="flex justify-center p-8">
-      <Button onClick={() => handleLogin("RK}5#C%FTa;wt)#4,=74;v", "Lk8Kgz.LeS.zEJ94{^{Ehf")}>
+      <Button onClick={() => handleLogin("RK5CFTawt474v", "Lk8Kgz.LeS.zEJ94{^{Ehf")}>
         Try it for free
       </Button>
       </div>
