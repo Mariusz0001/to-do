@@ -2,14 +2,15 @@ import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import { authenticate } from "../lib/commands/authenticate";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/lib/authProvider";
 
 export default function Description({ ...props }) {
   const router = useRouter();
-
+  const { login } = useAuth();
+  
   //TODO DELETE THIS, ONLY FOR TESTS PURPOUSE
   const handleLogin = async (username, password) => {
       var result = await authenticate(username, password);
-
       if (result && result.token) {
         login(result.token);
         googleLogout();
