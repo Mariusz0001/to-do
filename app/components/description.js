@@ -1,9 +1,24 @@
-import NavigationButton from "@/app/components/ui/todoapp/navigationButton";
 import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import { authenticate } from "../lib/commands/authenticate";
+import { useRouter } from "next/navigation";
 
 export default function Description({ ...props }) {
+  const router = useRouter();
+
+  //TODO DELETE THIS, ONLY FOR TESTS PURPOUSE
+  const handleLogin = async (username, password) => {
+      var result = await authenticate(username, password);
+
+      if (result && result.token) {
+        login(result.token);
+        googleLogout();
+        router.back();
+      } else {
+        router.push("/board");
+      }
+  };
+
   return (
     <div className="relative h-full w-full bg-cover bg-center bg-fixed bg-no-repeat bg-[url('/bg-image-todo.png')]">
       <div className="flex items-center justify-center">
@@ -15,9 +30,11 @@ export default function Description({ ...props }) {
           </p>          
         </div>        
       </div>      
-      <Button onClick={() => authenticate("RK}5#C%FTa;wt)#4,=74;v", "Lk8Kgz.LeS.zEJ94{^{Ehf")}>
+      <div className="flex justify-center p-8">
+      <Button onClick={() => handleLogin("RK}5#C%FTa;wt)#4,=74;v", "Lk8Kgz.LeS.zEJ94{^{Ehf")}>
         Try it for free
       </Button>
+      </div>
       <div className="bg-slate-100 dark:bg-zinc-800 space-x-10 mb-4 p-20">
         <ul>
           <li className="font-bold text-xl">
