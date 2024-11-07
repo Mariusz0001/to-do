@@ -1,7 +1,37 @@
-import NavigationButton from "@/app/components/ui/todoapp/navigationButton";
 import Link from "next/link";
+import { Button } from "@/app/components/ui/button";
+import { authenticate } from "../lib/commands/authenticate";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/lib/authProvider";
+import { useState } from "react";
 
 export default function Description({ ...props }) {
+  const router = useRouter();
+  const { login, isLoggedIn } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+
+  if (isLoggedIn) router.push("/home");
+
+  //TODO DELETE THIS, ONLY FOR TESTS PURPOUSE
+  const handleLogin = async (username, password) => {
+    try
+    {
+    setIsLoading(true);
+      var result = await authenticate(username, password);
+      if (result && result.token) {
+        login(result.token);
+        googleLogout();
+        router.push("/board");
+      } else {
+        router.push("/board");
+      }
+    }
+    finally
+    {
+    setIsLoading(false);
+    }
+  };
+
   return (
     <div className="relative h-full w-full bg-cover bg-center bg-fixed bg-no-repeat bg-[url('/bg-image-todo.png')]">
       <div className="flex items-center justify-center">
@@ -13,7 +43,12 @@ export default function Description({ ...props }) {
           </p>          
         </div>        
       </div>      
-      <NavigationButton pushUrl="/board">Try it for free</NavigationButton>
+      <div className="flex justify-center p-8">
+      <Button onClick={() => handleLogin(process.env.NEXT_PUBLIC_TEST_USERNAME, process.env.NEXT_PUBLIC_TEST_PASS)}
+        isLoading={isLoading}>
+        Try it for free
+      </Button>
+      </div>
       <div className="bg-slate-100 dark:bg-zinc-800 space-x-10 mb-4 p-20">
         <ul>
           <li className="font-bold text-xl">
