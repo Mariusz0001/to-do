@@ -15,7 +15,7 @@ const Task = React.forwardRef(({ className, ...props }, ref) => {
     if (props.id && props.id.length) await props.handleaccomplishtask(props.id);
   };
 
-  const handleEditTask = (id, taskName) => props.handleEditTask(id, taskName);
+  const handleEditTask = (id, taskName) => props.handleedittask(id, taskName);
 
   const isTaskDone = () =>
     props.status != BOARD_TYPE[0].value && props.status != BOARD_TYPE[1].value;

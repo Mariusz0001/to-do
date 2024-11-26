@@ -1,54 +1,49 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Textarea } from "@/app/components/ui/textarea";
 
 const EditableTask = React.forwardRef(({ className, ...props }, ref) => {
   const taskRef = useRef(null);
-  const [taskName, setTaskName] = useState(
-    props.children && props.children.length ? props.children : ""
-  );
+  const [taskName, setTaskName] = useState(props.children || "");
 
-  const containsWhiteSpace = (taskValue) =>
-    !taskValue.replace(/\s/g, "").length ? true : false;
+  useEffect(() => {
+    if (props.children) {
+      setTaskName(props.children);
+    }
+  }, [props.children]);
 
   const handleLostFocus = () => {
-    if (
-      !taskName ||
-      !taskName.length ||
-      containsWhiteSpace(taskName) ||
-      props.readOnly
-    )
-      return;
+    if (!taskName.trim() || props.readOnly) return;
 
-    if (!props.id || !props.id.length) {
+    if (!props.id) {
       props.handleaddtask(taskName);
       setTaskName("");
-      return;
-    }
-
-    if (props.children != taskName) {
-      props.handleEditTask(props.id, taskName);
-      return;
+    } else if (props.children !== taskName) {
+      props.handleedittask(props.id, taskName);
     }
   };
 
   const handleChange = (e) => {
-    if (!props.readOnly) setTaskName(e.target.value);
+    if (!props.readOnly) {
+      setTaskName(e.target.value);
+    }
   };
 
   return (
     <Textarea
-      className={"w-full h-12 max-h-[80px] dark:bg-zinc-900 dark:border-zinc-800"}
+      className={`w-full h-12 max-h-[80px] dark:bg-zinc-900 dark:border-zinc-800 ${className}`}
       ref={taskRef}
       rows="1"
-      placeholder="Start typing to add new task..."
+      placeholder={props.id ? "Edit your task..." : "Start typing to add a new task..."}
+      aria-label={props.id ? "Edit task" : "Add new task"}
       onBlur={handleLostFocus}
-      readOnly={false}
+      readOnly={props.readOnly || false}
       onChange={(e) => handleChange(e)}
       value={taskName}
-    ></Textarea>
+    />
   );
 });
+EditableTask.displayName = "EditableTask";
 
 export { EditableTask };
